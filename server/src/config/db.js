@@ -1,11 +1,12 @@
 import mysql from 'mysql';
 
 let pool = mysql.createPool({
+    //heroku connection
     connectionLimit: 10,
-    host: 'localhost',
-    user: 'exampleUser',
-    password: 'password',
-    database: 'InClassExample'
+    host: process.env.DB_Host,
+    user: process.env.DB_Username,
+    password: process.env.DB_Pass,
+    database: process.env.DB_Name
 });
 
 function executeQuery(sql, args = []) {
