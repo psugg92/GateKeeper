@@ -30,6 +30,9 @@ export function getUserNPCs(id) {
         .then((results) => results)
 }
 
-export function getUserTraps(id) {
-    let sql = `SELECT * FROM `
+export function getCampaignNodes(id) {
+    let sql = `SELECT * FROM nodes
+                WHERE campaign_id = ${id}`
+    return executeQuery(sql, [id])
+        .then((results) => results)
 }

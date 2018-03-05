@@ -23,6 +23,6 @@ router.use('/nodes', nodeRouter);
 router.use('/worlds', worldRouter);
 router.use('/npc', npcRouter);
 router.use('/campaigns', campaignRouter);
-router.use('/traps', trapRouter);
+// router.use('/traps', trapRouter);
 
 export default router;
