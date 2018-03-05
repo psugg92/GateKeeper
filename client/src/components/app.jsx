@@ -9,7 +9,6 @@ import CreateCampaign from './CreateCampaign';
 import CampaignDashboard from './CampaignDashboard';
 import Storyboard from './Storyboard';
 import CreateEvent from './CreateEvent';
-// import CreateNPC from './CreateNPC';
 
 // import Donate from './donate';
 // import PrivateRoute from './auth/privateRoute';
