@@ -17,10 +17,9 @@ export default class Storyboard extends Component {
                     <h2 className="display-6">Storyboard</h2>
                 </div>
                 <div className='container-fluid d-flex justify-content-center'>
-                    <Link to="./CreateEvent" className="btn btn-danger btn-sm m-1">
+                    <Link to="./CreateEvent" className="btn btn-danger btn-lg m-1">
                         Create Event
                     </Link>
-                    <CreateNPC />
                 </div>
                 <div className='container-fluid d-flex justify-content-start'>
                     <div className="card text-white bg-danger mb-3 col-sm-3 d-flex mr-1">

@@ -9,17 +9,17 @@ export default class CreateNPC extends Component {
     render() {
         return (
             <Fragment>
-                {/* <!-- Button trigger modal --> */}
-                <button type="button" className="btn btn-light" data-toggle="modal" data-target="#createNPC">
+                {/* <!-- Button trigger for NPC modal --> */}
+                <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#create-NPC">
                     Create NPC
                 </button>
 
-                {/* <!-- Modal --> */}
-                <div className="modal fade" id="createNPC" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                {/* <!-- NPC Modal --> */}
+                <div className="modal fade" id="create-NPC" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div className="modal-dialog modal-lg" role="document">
                         <div className="modal-content bg-danger text-light">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLongTitle">Create NPC</h5>
+                                <h5 className="modal-title" id="exampleModalLongTitle">Create an NPC</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -266,7 +266,7 @@ export default class CreateNPC extends Component {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="button" className="btn btn-light">Save changes</button>
                             </div>
                         </div>

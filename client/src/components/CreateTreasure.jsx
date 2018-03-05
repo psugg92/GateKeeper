@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class CreateLocation extends Component {
+export default class CreateTreasure extends Component {
     constructor(props) {
         super(props);
     }
@@ -9,17 +9,17 @@ export default class CreateLocation extends Component {
     render() {
         return (
             <Fragment>
-                {/* <!-- Button trigger for Locations modal --> */}
-                <button type="button" className="btn btn-danger m-5" data-toggle="modal" data-target="#create-location">
-                    Create Location
-                </button>
+                {/* <!-- Button trigger for Treasure modal --> */}
+                <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#create-treasure">
+                    Create Treasure
+                        </button>
 
-                {/* <!-- Locations Modal --> */}
-                <div className="modal fade" id="create-location" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                {/* <!-- Treasure Modal --> */}
+                <div className="modal fade" id="create-treasure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div className="modal-dialog modal-lg" role="document">
                         <div className="modal-content bg-danger text-light">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLongTitle">Create a Location</h5>
+                                <h5 className="modal-title" id="exampleModalLongTitle">Create a Treasure</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -30,21 +30,21 @@ export default class CreateLocation extends Component {
                                     <div className="form-group row">
                                         <label className="col-2 col-form-label text-light">Name</label>
                                         <div className="col-10">
-                                            <input className="form-control" type="text" id="location-name-input" />
+                                            <input className="form-control" type="text" id="treasure-name-input" />
                                         </div>
                                     </div>
 
                                     <div className="form-group row">
-                                        <label className="col-2 col-form-label text-light">Visual Description</label>
+                                        <label className="col-2 col-form-label text-light">Description</label>
                                         <div className="col-10">
-                                            <input className="form-control" type="text" id="location-description-input" />
+                                            <input className="form-control" type="text" id="treasure-description-input" />
                                         </div>
                                     </div>
 
                                     <div className="form-group row">
-                                        <label className="col-2 col-form-label text-light">Lore</label>
+                                        <label className="col-2 col-form-label text-light">Value</label>
                                         <div className="col-10">
-                                            <input className="form-control" type="text" id="location-lore-input" />
+                                            <input className="form-control" type="number" id="treasure-value-input" />
                                         </div>
                                     </div>
 
