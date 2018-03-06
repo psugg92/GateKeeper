@@ -3,10 +3,10 @@ import mysql from 'mysql';
 let pool = mysql.createPool({
     //heroku connection
     connectionLimit: 10,
-    host: process.env.DB_Host,
-    user: process.env.DB_Username,
-    password: process.env.DB_Pass,
-    database: process.env.DB_Name
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
 
 function executeQuery(sql, args = []) {
@@ -30,7 +30,6 @@ function callProcedure(procedureName, args = []) {
     let callString = `CALL ${procedureName}(${placeholders});`; // CALL GetChirps();, or CALL InsertChirp(?,?,?);
     return executeQuery(callString, args);
 }
-
 function rows(procedureName, args = []) {
     return callProcedure(procedureName, args)
     .then((resultsets) => {

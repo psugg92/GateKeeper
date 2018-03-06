@@ -1,10 +1,20 @@
-// import Table from '../table';
+import Table from '../table';
 import { Router } from 'express';
-import { getUserCampaigns } from '../nodeQuery';
+import { getUserCampaigns, getCampaignNodes } from '../nodeQuery';
 
 let router = Router();
 
-// let campaigns = new Table('campaigns')
+let campaigns = new Table('campaigns')
+
+router.get('/nodes/:id', (req, res) => {
+    getCampaignNodes(req.params.id)
+    .then(results => {
+        res.json(results)
+    }).catch(err => {
+        console.log(err)
+        res.sendStatus(500);
+    })
+})
 
 router.get('/:id', (req, res) => {
     getUserCampaigns(req.params.id)
@@ -15,4 +25,30 @@ router.get('/:id', (req, res) => {
     ))
 });
 
+router.post('/:id', (req, res) => {
+    campaigns.insert(req.body)
+    .then(data =>{
+        res.send(data);
+    }).catch((err) => (
+        console.log(err)
+    ))
+})
+
+router.put('/:id', (req, res) => {
+    campaigns.update(req.params.id, req.body)
+    .then(data =>{
+        res.send(data);
+    }).catch((err) => (
+        console.log(err)
+    ))
+})
+
+router.delete('/:id', (req, res) => {
+    campaigns.delete(req.params.id)
+    .then((data) => {
+        res.send(data);
+    }).catch((err) =>(
+        console.log(err)
+    ))
+})
 export default router;
