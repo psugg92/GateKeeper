@@ -9,7 +9,7 @@ export default class Header extends Component {
     render() {
         return (
             <Fragment>
-                <div className="d-flex justify-content-start">
+                <div className="d-flex justify-content-start align-items-center" id="top">
                     <Link to='/'>
                         <img src="../pics/swordGuy.png" className='ml-3 mt-3 mr-1' />
                     </Link>

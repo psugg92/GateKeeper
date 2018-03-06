@@ -75,3 +75,7 @@ body {
   .StripeElement.PaymentRequestButton {
     padding: 0;
   }
+
+#top {
+  background-color: #F2F2F2;
+}
