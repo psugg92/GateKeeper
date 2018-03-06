@@ -36,3 +36,7 @@ export function getCampaignNodes(id) {
     return executeQuery(sql, [id])
         .then((results) => results)
 }
+
+export function postUserNPCs(id) {
+    let sql = ``
+}

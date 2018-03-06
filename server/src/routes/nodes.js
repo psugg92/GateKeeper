@@ -35,4 +35,13 @@ router.put('/', (req, res) => {
     })
 })
 
+router.delete('/', (req, res) => {
+    nodeTable.delete(req.body.id)
+    .then(data => {
+        res.send(data);
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
 export default router;
