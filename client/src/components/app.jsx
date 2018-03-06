@@ -6,7 +6,7 @@ import Main from './Main';
 import SignUp from './SignUp';
 import UserDashboard from './UserDashboard';
 import CreateCampaign from './CreateCampaign';
-import CampaignDashboard from './CampaignDashboard';
+// import CampaignDashboard from './CampaignDashboard';
 import Storyboard from './Storyboard';
 import CreateEvent from './CreateEvent';
 
@@ -33,8 +33,10 @@ export default class App extends Component {
                         <Route exact path='/SignUp' component={SignUp} />
                         <Route exact path='/UserDashboard' component={UserDashboard} />
                         <Route exact path='/CreateCampaign' component={CreateCampaign} />
-                        <Route exact path='/CampaignDashboard' component={CampaignDashboard} />
-                        <Route exact path='/Storyboard' component={Storyboard} />
+                        {/* <Route exact path='/CampaignDashboard' component={CampaignDashboard} /> */}
+                        <Route exact path='/Storyboard/:id' component={Storyboard} />
+                        {/* <Route exact path='/Storyboard' component={Storyboard} /> */}
+
                         <Route exact path='/CreateEvent' component={CreateEvent} />
 
                         {/* <Route exact path='/CreateNPC' component={CreateNPC} /> */}
