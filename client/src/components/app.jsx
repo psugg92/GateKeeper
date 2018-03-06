@@ -34,7 +34,7 @@ export default class App extends Component {
                         <Route exact path='/UserDashboard' component={UserDashboard} />
                         <Route exact path='/CreateCampaign' component={CreateCampaign} />
                         {/* <Route exact path='/CampaignDashboard' component={CampaignDashboard} /> */}
-                        <Route exact path='/Storyboard' component={Storyboard} />
+                        <Route exact path='/Storyboard/:id' component={Storyboard} />
                         {/* <Route exact path='/Storyboard' component={Storyboard} /> */}
 
                         <Route exact path='/CreateEvent' component={CreateEvent} />

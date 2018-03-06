@@ -16,7 +16,7 @@ export default class Storyboard extends Component {
     };
 
     componentWillMount() {
-        nodesService.all(`${this.props.route.params.id}`)
+        nodesService.all(`${this.props.match.params.id}`)
         .then(data => {
             this.setState ({ nodeArray: data })
         })
@@ -28,12 +28,12 @@ export default class Storyboard extends Component {
                 <div className='container-fluid d-flex justify-content-center'>
                     <h2 className="display-6">Storyboard</h2>
                 </div>
-                <div className='container-fluid d-flex justify-content-center'>
+                <div className='container-fluid d-flex justify-content-center m-3'>
                     <Link to="./CreateEvent" className="btn btn-danger btn-lg m-1">
                         Create Event
                     </Link>
                 </div>
-                <div className='container-fluid d-flex justify-content-start'>
+                <div className='container-fluid d-flex justify-content-between'>
                     <NodeMaker nodeList={this.state.nodeArray}/>
                 </div>
             </Fragment>
