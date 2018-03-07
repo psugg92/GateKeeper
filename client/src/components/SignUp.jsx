@@ -33,9 +33,14 @@ export default class SignUp extends Component {
                             id="exampleFormControlTextarea1"
                             rows="1"
                         />
-                        <Link to='/UserDashboard' className="btn btn-danger btn-lg">
-                            CREATE ACCOUNT
-                        </Link>
+                        <div className="container-fluid d-flex justify-content-center">
+                            <Link to='/UserDashboard' className="btn btn-danger btn-lg">
+                                CREATE ACCOUNT
+                            </Link>
+                            <Link to='../' className="btn btn-danger btn-lg">
+                                CANCEL
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </Fragment>

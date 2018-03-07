@@ -12,7 +12,7 @@ export default class CreateTreasure extends Component {
                 {/* <!-- Button trigger for Treasure modal --> */}
                 <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#create-treasure">
                     Create Treasure
-                        </button>
+                </button>
 
                 {/* <!-- Treasure Modal --> */}
                 <div className="modal fade" id="create-treasure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
