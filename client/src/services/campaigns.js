@@ -9,7 +9,7 @@ function one(id) {
 }
 
 function insert(data) {
-    return baseService.post('/api/campaigns', data);
+    return baseService.post('/api/campaigns/1', data);
 }
 
 function update(id, data) {

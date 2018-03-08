@@ -9,6 +9,7 @@ import CreateCampaign from './CreateCampaign';
 // import CampaignDashboard from './CampaignDashboard';
 import Storyboard from './Storyboard';
 import CreateEvent from './CreateEvent';
+import CreateEvent2 from './CreateEvent2';
 
 // import Donate from './donate';
 // import PrivateRoute from './auth/privateRoute';
@@ -38,7 +39,7 @@ export default class App extends Component {
                         {/* <Route exact path='/Storyboard' component={Storyboard} /> */}
 
                         <Route exact path='/CreateEvent' component={CreateEvent} />
-
+                        <Route exact path='/CreateEvent2' component={CreateEvent2} />
                         {/* <Route exact path='/CreateNPC' component={CreateNPC} /> */}
                     </Switch>
                 </Fragment>
