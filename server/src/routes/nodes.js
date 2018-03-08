@@ -19,7 +19,7 @@ router.get('/:id', (req,res) => {
 
 router.post('/', (req, res) => {
     nodeTable.insert(req.body)
-    .then(data =>{
+    .then(data => {
         res.send(data);
     }).catch((err) => {
         console.log(err)

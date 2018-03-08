@@ -25,17 +25,17 @@ router.get('/:id', (req, res) => {
     ))
 });
 
-router.post('/:id', (req, res) => {
-    campaigns.insert(req.body)
-    .then(data =>{
-        res.send(data);
-    }).catch((err) => (
-        console.log(err)
-    ))
-})
+// router.post('/:id', (req, res) => {
+//     campaigns.insert(req.body)
+//     .then(data =>{
+//         res.send(data);
+//     }).catch((err) => (
+//         console.log(err)
+//     ))
+// })
 
 router.post('/:id', (req, res) => {
-    postUserCampaign(req.body.campaign_name, req.body.campaign_description, req.params.id)
+    postUserCampaign(req.body.campaignName, req.body.campaignDescription, req.params.id)
     .then((results) => (
         res.json(results)
     )).catch((err) => (
@@ -60,4 +60,5 @@ router.delete('/:id', (req, res) => {
         console.log(err)
     ))
 })
+
 export default router;

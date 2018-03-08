@@ -25,7 +25,7 @@ export function getUserCampaigns(id) {
 
 export function postUserCampaign(name, desc, user_id) {
     let sql = `INSERT INTO campaigns (campaign_name, campaign_description, user_id)
-                VALUE (${name}, ${desc}, ${user_id})`
+                VALUE (${`"${name}"`}, ${`"${desc}"`}, ${user_id})`
     return executeQuery(sql, [name, desc, user_id])
         .then((results) => results);
 }
@@ -46,7 +46,7 @@ export function getCampaignNodes(id) {
 
 export function postNode(name, desc, loc_id, camp_id) {
     let sql = `INSERT INTO nodes (node_name, node_description, location_id, campaign_id)
-                VALUE (${name}, ${desc}, ${loc_id}, ${camp_id});
+                VALUE (${`"${name}"`}, ${`"${desc}"`}, ${loc_id}, ${camp_id});
                 INSERT INTO node_ref (node_id)
                 VALUE (LAST_INSERT_ID())`
     return executeQuery(sql, [name, desc, loc_id, camp_id])
@@ -55,9 +55,142 @@ export function postNode(name, desc, loc_id, camp_id) {
 
 export function postTrap(name, type, seen_dc, disarm_dc, desc, damage) {
     let sql = `INSERT INTO traps (trap_name, trap_type, trap_seen_dc, trap_disarm_dc, trap_description, trap_damage)
-                VALUE (${name}, ${type}, ${seen_dc}, ${disarm_dc}, ${desc}, ${damage})
+                VALUE (${`"${name}"`}, ${`"${type}"`}, ${seen_dc}, ${disarm_dc}, ${`"${desc}"`}, ${damage})
                 INSERT INTO node_ref (trap_id)
                 VALUE (LAST_INSERT_ID())`
     return executeQuery(sql, [name, type, seen_dc, disarm_dc, desc, damage])
         .then((results) => results)
 }
+
+export function postNPC(name, 
+                        user_id, 
+                        size = null,
+                        alignment = null,
+                        armor = null,
+                        hp = null,
+                        speed = null, 
+                        fly_speed = null,
+                        climb_speed = null,
+                        str = null,
+                        dex = null,
+                        con = null,
+                        int = null,
+                        wis = null,
+                        chr = null,
+                        STstr = null,
+                        STdex = null,
+                        STcon = null,
+                        STint = null,
+                        STwis = null,
+                        STchr = null,
+                        skills = null,
+                        damage_immunity = null,
+                        condition_immunity = null,
+                        senses = null,
+                        passive_perception = null,
+                        xp_reward = null,
+                        desc = null,
+                        actions = null,
+                        legendary_actions = null,
+                        lair_actions = null) {
+        
+        let sql = `INSERT INTO npc (npc_name,
+                                    user_id,
+                                    npc_size,
+                                    npc_alignment,
+                                    npc_armor,
+                                    npc_hp,
+                                    npc_speed,
+                                    npc_fly_speed,
+                                    npc_climb_speed,
+                                    npc_strength,
+                                    npc_dexterity,
+                                    npc_constitution,
+                                    npc_intelligence,
+                                    npc_wisdom,
+                                    npc_charisma,
+                                    npc_st_strength,
+                                    npc_st_dexterity,
+                                    npc_st_constitution,
+                                    npc_st_intelligence,
+                                    npc_st_wisdom,
+                                    npc_st_charisma,
+                                    npc_skills,
+                                    npc_damage_immunity,
+                                    npc_condition_immunity,
+                                    npc_senses,
+                                    npc_passive_perception,
+                                    npc_xp_reward,
+                                    npc_description,
+                                    npc_actions,
+                                    npc_legendary_actions,
+                                    npc_lair_actions
+                                )
+                    VALUE (${`"${name}"`},
+                            ${user_id},
+                            ${`"${size}"`},
+                            ${`"${alignment}"`},
+                            ${armor},
+                            ${hp},
+                            ${speed},
+                            ${fly_speed},
+                            ${climb_speed},
+                            ${str},
+                            ${dex},
+                            ${con},
+                            ${int},
+                            ${wis},
+                            ${chr},
+                            ${STstr},
+                            ${STdex},
+                            ${STcon},
+                            ${STint},
+                            ${STwis},
+                            ${STchr},
+                            ${`"${skills}"`},
+                            ${`"${damage_immunity}"`},
+                            ${`"${condition_immunity}"`},
+                            ${`"${senses}"`},
+                            ${passive_perception},
+                            ${xp_reward},
+                            ${`"${desc}"`},
+                            ${`"${actions}"`},
+                            ${`"${legendary_actions}"`},
+                            ${`"${lair_actions}"`})
+                    INSERT INTO node_ref (npc_id)
+                    VALUE (LAST_INSERT_ID())`
+                return executeQuery(sql, [name,
+                                            user_id,
+                                            size,
+                                            alignment,
+                                            armor,
+                                            hp,
+                                            speed,
+                                            fly_speed,
+                                            climb_speed,
+                                            str,
+                                            dex,
+                                            con,
+                                            int,
+                                            wis,
+                                            chr,
+                                            STstr,
+                                            STdex,
+                                            STcon,
+                                            STint,
+                                            STwis,
+                                            STchr,
+                                            skills,
+                                            damage_immunity,
+                                            condition_immunity,
+                                            senses,
+                                            passive_perception,
+                                            xp_reward,
+                                            desc,
+                                            actions,
+                                            legendary_actions,
+                                            lair_actions]
+                                        )
+                            .then((results) => results)
+            
+    }
