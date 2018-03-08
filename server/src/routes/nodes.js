@@ -3,6 +3,7 @@ import {getSingleNode, getCampaignNodes} from '../nodeQuery';
 import Table from '../table';
 
 let nodeTable = new Table('nodes');
+let nodeRefTable = new Table('node_ref');
 
 let router = Router();
 
@@ -24,6 +25,13 @@ router.post('/', (req, res) => {
         console.log(err)
         res.sendStatus(500)
     })
+
+    nodeRefTable.insert(req.body.id)
+    .then(data => {
+        res.send(data);
+    }).catch((err) => (
+        console.log(err)
+    ))
 })
 
 router.put('/', (req, res) => {

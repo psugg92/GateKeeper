@@ -23,6 +23,13 @@ export function getUserCampaigns(id) {
         .then((results) => results);
 }
 
+export function postUserCampaign(name, desc, user_id) {
+    let sql = `INSERT INTO campaigns (campaign_name, campaign_description, user_id)
+                VALUE (${name}, ${desc}, ${user_id})`
+    return executeQuery(sql, [name, desc, user_id])
+        .then((results) => results);
+}
+
 export function getUserNPCs(id) {
     let sql = `SELECT * FROM npc
                 WHERE user_id = ${id}`
@@ -37,6 +44,20 @@ export function getCampaignNodes(id) {
         .then((results) => results)
 }
 
-export function postUserNPCs(id) {
-    let sql = ``
+export function postNode(name, desc, loc_id, camp_id) {
+    let sql = `INSERT INTO nodes (node_name, node_description, location_id, campaign_id)
+                VALUE (${name}, ${desc}, ${loc_id}, ${camp_id});
+                INSERT INTO node_ref (node_id)
+                VALUE (LAST_INSERT_ID())`
+    return executeQuery(sql, [name, desc, loc_id, camp_id])
+        .then((results) => results)
+}
+
+export function postTrap(name, type, seen_dc, disarm_dc, desc, damage) {
+    let sql = `INSERT INTO traps (trap_name, trap_type, trap_seen_dc, trap_disarm_dc, trap_description, trap_damage)
+                VALUE (${name}, ${type}, ${seen_dc}, ${disarm_dc}, ${desc}, ${damage})
+                INSERT INTO node_ref (trap_id)
+                VALUE (LAST_INSERT_ID())`
+    return executeQuery(sql, [name, type, seen_dc, disarm_dc, desc, damage])
+        .then((results) => results)
 }

@@ -1,6 +1,6 @@
 import Table from '../table';
 import { Router } from 'express';
-import { getUserCampaigns, getCampaignNodes } from '../nodeQuery';
+import { getUserCampaigns, getCampaignNodes, postUserCampaign } from '../nodeQuery';
 
 let router = Router();
 
@@ -30,6 +30,15 @@ router.post('/:id', (req, res) => {
     .then(data =>{
         res.send(data);
     }).catch((err) => (
+        console.log(err)
+    ))
+})
+
+router.post('/:id', (req, res) => {
+    postUserCampaign(req.body.campaign_name, req.body.campaign_description, req.params.id)
+    .then((results) => (
+        res.json(results)
+    )).catch((err) => (
         console.log(err)
     ))
 })
