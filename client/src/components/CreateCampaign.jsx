@@ -1,10 +1,34 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import * as campaignsService from "../services/campaigns";
 
 
 export default class CreateCampaign extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            campaignName: "",
+            campaignDescription: "",
+
+        }
+    }
+
+    updateCampaignName(value) {
+        this.setState({ campaignName: value });
+        console.log({ campaignName: value });
+    }
+
+    updateCampaignDescription(value) {
+        this.setState({ campaignDescription: value });
+        console.log({ campaignDescription: value });
+    }
+
+    createCampaign() {
+        campaignsService.insert({
+            campaignName: this.state.campaignName,
+            campaignDescription: this.state.campaignDescription
+        })
     }
 
     render() {
@@ -16,25 +40,19 @@ export default class CreateCampaign extends Component {
                 <div className='container-fluid d-flex justify-content-center'>
                     <div className="d-flex flex-column">
                         <div className="p-2">Name of Campaign:</div>
-                        <textarea onChange={(event) => { this.updateTitle(event.target.value) }}
+                        <textarea onChange={(event) => { this.updateCampaignName(event.target.value) }}
                             className="form-control p-1 m-2"
                             id="exampleFormControlTextarea1"
                             rows="1"
                         />
                         <div className="p-2">Short Description:</div>
-                        <textarea onChange={(event) => { this.updateTitle(event.target.value) }}
+                        <textarea onChange={(event) => { this.updateCampaignDescription(event.target.value) }}
                             className="form-control p-1 m-2"
                             id="exampleFormControlTextarea1"
                             rows="5"
                         />
-                        <div className="p-2">???</div>
-                        <textarea onChange={(event) => { this.updateTitle(event.target.value) }}
-                            className="form-control p-1 m-2"
-                            id="exampleFormControlTextarea1"
-                            rows="1"
-                        />
                         <div className="container-fluid d-flex justify-content-center">
-                            <Link to='/UserDashboard' className="btn btn-danger btn-lg">
+                            <Link to='/UserDashboard' onClick={() => { this.createCampaign()}} className="btn btn-danger btn-lg">
                                 CREATE CAMPAIGN
                             </Link>
                             <Link to='../UserDashboard' className="btn btn-danger btn-lg">
