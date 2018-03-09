@@ -302,16 +302,9 @@ export default class CreateEvent2 extends Component {
                             </div>
 
                             <div className="form-group row">
-                                <label className="col-2 col-form-label text-light">Size</label>
+                                <label className="col-2 col-form-label text-light">Description</label>
                                 <div className="col-10">
-                                    <select className="form-control" id="npc-select-size-input" onChange={(event) => { this.updateNpcSize(event.target.value) }}>
-                                        <option>Tiny ( less than 2 ft.)</option>
-                                        <option>Small (3 - 5 ft.)</option>
-                                        <option>Medium (5 - 9 ft.)</option>
-                                        <option>Large (10 - 14 ft.)</option>
-                                        <option>Huge (15 - 19 ft.</option>
-                                        <option>Gargantuan (20 ft. or larger)</option>
-                                    </select>
+                                    <input className="form-control" type="text" id="npc-description-input" onChange={(event) => { this.updateNpcDescription(event.target.value) }} />
                                 </div>
                             </div>
 
@@ -328,6 +321,21 @@ export default class CreateEvent2 extends Component {
                                         <option>Lawful Evil</option>
                                         <option>Neutral Evil</option>
                                         <option>Chaotic Evil</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h4 className="text-light p-1">Stats</h4>
+                            <div className="form-group row">
+                                <label className="col-2 col-form-label text-light">Size</label>
+                                <div className="col-10">
+                                    <select className="form-control" id="npc-select-size-input" onChange={(event) => { this.updateNpcSize(event.target.value) }}>
+                                        <option>Tiny (less than 2 ft.)</option>
+                                        <option>Small (3 - 5 ft.)</option>
+                                        <option>Medium (5 - 9 ft.)</option>
+                                        <option>Large (10 - 14 ft.)</option>
+                                        <option>Huge (15 - 19 ft.</option>
+                                        <option>Gargantuan (20 ft. or larger)</option>
                                     </select>
                                 </div>
                             </div>
@@ -367,6 +375,7 @@ export default class CreateEvent2 extends Component {
                                 </div>
                             </div>
 
+                            <h4 className="text-light p-1">Ability Scores</h4>
                             <div className="form-group row">
                                 <label className="col-1 col-form-label text-light">STR:</label>
                                 <div className="col-1">
@@ -399,6 +408,7 @@ export default class CreateEvent2 extends Component {
                                 </div>
                             </div>
 
+                            <h4 className="text-light p-1">Saving Throws</h4>
                             <div className="form-group row">
                                 <label className="col-1 col-form-label text-light">STR ST:</label>
                                 <div className="col-1">
@@ -477,13 +487,6 @@ export default class CreateEvent2 extends Component {
                                 <label className="col-2 col-form-label text-light">Experience Reward</label>
                                 <div className="col-10">
                                     <input className="form-control" type="number" id="npc-experienceReward-input" onChange={(event) => { this.updateNpcExperienceReward(event.target.value) }} />
-                                </div>
-                            </div>
-
-                            <div className="form-group row">
-                                <label className="col-2 col-form-label text-light">Description</label>
-                                <div className="col-10">
-                                    <input className="form-control" type="text" id="npc-description-input" onChange={(event) => { this.updateNpcDescription(event.target.value) }} />
                                 </div>
                             </div>
 

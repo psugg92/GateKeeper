@@ -17,7 +17,7 @@ router.get('/nodes/:id', (req, res) => {
 })
 
 router.post('/nodes/:id', (req, res) => {
-    postNode(req.body.eventName, req.body.eventDescrition, req.body.eventLocation, req.params.id)
+    postNode(req.body.eventName, req.body.eventDescription, req.body.eventLocation, req.params.id)
     .then((results) => (
         res.json(results)
     )).catch((err) => (

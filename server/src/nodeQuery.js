@@ -61,8 +61,9 @@ export function postCampaignLocation(name, desc, lore, camp_id) {
 export function postNode(name, desc, loc_id, camp_id) {
     let sql = `INSERT INTO nodes (node_name, node_description, location_id, campaign_id)
                 VALUE (${`"${name}"`}, ${`"${desc}"`}, ${loc_id}, ${camp_id});
+                SET @last_id = LAST_INSERT_ID();
                 INSERT INTO node_ref (node_id)
-                VALUE (LAST_INSERT_ID())`
+                VALUE (@last_id);`
     return executeQuery(sql, [name, desc, loc_id, camp_id])
         .then((results) => results)
 }

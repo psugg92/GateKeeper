@@ -2,16 +2,14 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 export default class LocationMaker extends Component {
-    render() {
+    constructor(props) {
+        super(props)
 
-        let locationCollection = this.props.locationList.map(locationInfo => {
-            return (
-                <Fragment key={locationInfo.id}>
-                    <option>{locationInfo.location_name}</option>
-                </Fragment>  
-            )
-            
-        })
-        return <Fragment>{locationCollection}</Fragment>;
+        this.state = {
+            id: this.props.location.id
+        }
+    }
+    render() {
+            return <option value={this.state.id}>{this.props.location.location_name}</option>
     }
 }

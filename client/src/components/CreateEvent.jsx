@@ -18,7 +18,7 @@ export default class CreateEvent extends Component {
 
             eventName: "",
             eventDescription: "",
-            eventLocation: "",
+            eventLocation: 0,
 
             locationName: "",
             locationDescription: "",
@@ -62,16 +62,21 @@ export default class CreateEvent extends Component {
     createLocation() {
         campaignsService.insertLocation({
 
-            // eventName: this.state.eventName,
-            // eventDescription: this.state.eventDescription,
-            // eventLocation: this.state.eventLocation,
-
             locationName: this.state.locationName,
             locationDescription: this.state.locationDescription,
             locationLore: this.state.locationLore,
 
         }, this.props.match.params.id)
+    }
 
+    createNode() {
+        campaignsService.insertEvent({
+
+            eventName: this.state.eventName,
+            eventDescription: this.state.eventDescription,
+            eventLocation: this.state.eventLocation
+
+        }, this.props.match.params.id)
     }
 
     componentWillMount() {
@@ -82,13 +87,7 @@ export default class CreateEvent extends Component {
             })
     };
 
-    updateList() {
-        campaignsService.allLocations(`${this.props.match.params.id}`)
-            .then(data => {
-                this.setState({ locationArray: data })
-                console.log(this.state.locationArray);
-            })
-    }
+    
 
     render() {
         return (
@@ -112,7 +111,11 @@ export default class CreateEvent extends Component {
                         />
                         <div className="p-2 text-left">Location</div>
                         <select className="form-control p-1 m-2" id="event-select-locations-input" onChange={(event) => { this.updateEventLocation(event.target.value) }}>
-                            <LocationMaker locationList={this.state.locationArray} />
+                            {this.state.locationArray.map((location, index) => {
+                                return <LocationMaker location={location} key={index}/>
+                            })
+                        }
+                            
                         </select>
 
                         {/* Create Location */}
@@ -161,9 +164,9 @@ export default class CreateEvent extends Component {
                     <Link to="/Storyboard/1" className="btn btn-danger btn-lg m-1">
                         CANCEL
                     </Link>
-                    <Link to="/CreateEvent2" className="btn btn-danger btn-lg m-1">
+                    <button type="button" className="btn btn-danger btn-lg m-1" onClick={() => { this.createNode() }}>
                         NEXT
-                    </Link>
+                    </button>
                 </div>
             </Fragment>
         );

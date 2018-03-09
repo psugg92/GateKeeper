@@ -20,6 +20,10 @@ function insertLocation(data, id) {
     return baseService.post(`/api/campaigns/locations/${id}`, data);
 }
 
+function insertEvent(data, id) {
+    return baseService.post(`/api/campaigns/nodes/${id}`, data);
+}
+
 function update(id, data) {
     return baseService.put(`/api/campaigns/${id}`, data);
 }
@@ -30,4 +34,4 @@ function destroy(id) {
 
 
 
-export { all, allLocations, one, insert, insertLocation, update, destroy };
+export { all, allLocations, one, insert, insertLocation, insertEvent, update, destroy };

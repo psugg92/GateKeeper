@@ -3,6 +3,10 @@ body {
   /* background:url(https://66.media.tumblr.com/ad392a5f11674074ddccd754e1cfadf9/tumblr_mfpaevAhTB1qdv5ueo1_500.gif) */
 }
 
+#hide {
+  visibility: hidden;
+}
+
 .Checkout {
     display: flex;
     align-items: center;
