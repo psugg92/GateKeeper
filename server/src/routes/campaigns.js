@@ -1,6 +1,6 @@
 import Table from '../table';
 import { Router } from 'express';
-import { getUserCampaigns, getCampaignNodes, postUserCampaign, getCampaignLocations, postCampaignLocation } from '../nodeQuery';
+import { getUserCampaigns, getCampaignNodes, postUserCampaign, getCampaignLocations, postCampaignLocation, postNode } from '../nodeQuery';
 
 let router = Router();
 
@@ -14,6 +14,15 @@ router.get('/nodes/:id', (req, res) => {
         console.log(err)
         res.sendStatus(500);
     })
+})
+
+router.post('/nodes/:id', (req, res) => {
+    postNode(req.body.eventName, req.body.eventDescrition, req.body.eventLocation, req.params.id)
+    .then((results) => (
+        res.json(results)
+    )).catch((err) => (
+        console.log(err)
+    ))
 })
 
 router.get('/:id', (req, res) => {
