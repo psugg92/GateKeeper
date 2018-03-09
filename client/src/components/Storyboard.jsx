@@ -29,7 +29,7 @@ export default class Storyboard extends Component {
                     <h2 className="display-6">Storyboard</h2>
                 </div>
                 <div className='container-fluid d-flex justify-content-center m-3'>
-                    <Link to="/CreateEvent" className="btn btn-danger btn-lg m-1">
+                    <Link to={`/CreateEvent/${this.props.match.params.id}`} className="btn btn-danger btn-lg m-1">
                         Create Event
                     </Link>
                     {/* <!-- Button trigger for Delete Campaign modal --> */}

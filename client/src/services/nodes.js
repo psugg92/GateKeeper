@@ -24,4 +24,6 @@ function oneNode(id) {
     return baseService.get(`/api/nodes/${id}`);
 }
 
+// function insertNode()
+
 export { all, one, insert, update, destroy, oneNode };

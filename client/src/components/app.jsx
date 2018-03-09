@@ -38,7 +38,7 @@ export default class App extends Component {
                         <Route exact path='/Storyboard/:id' component={Storyboard} />
                         {/* <Route exact path='/Storyboard' component={Storyboard} /> */}
 
-                        <Route exact path='/CreateEvent' component={CreateEvent} />
+                        <Route exact path='/CreateEvent/:id' component={CreateEvent} />
                         <Route exact path='/CreateEvent2' component={CreateEvent2} />
                         {/* <Route exact path='/CreateNPC' component={CreateNPC} /> */}
                     </Switch>
