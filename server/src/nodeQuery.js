@@ -44,6 +44,20 @@ export function getCampaignNodes(id) {
         .then((results) => results)
 }
 
+export function getCampaignLocations(id) {
+    let sql = `SELECT * FROM locations
+                WHERE campaign_id = ${id}`
+    return executeQuery(sql, [id])
+        .then((results) => results)
+}
+
+export function postCampaignLocation(name, desc, lore, camp_id) {
+    let sql = `INSERT INTO locations (location_name, location_description, location_lore, campaign_id)
+                VALUE (${`"${name}"`}, ${`"${desc}"`}, ${`"${lore}"`}, ${camp_id})`
+    return executeQuery(sql, [name, desc, lore, camp_id])
+        .then((results) => results)
+}
+
 export function postNode(name, desc, loc_id, camp_id) {
     let sql = `INSERT INTO nodes (node_name, node_description, location_id, campaign_id)
                 VALUE (${`"${name}"`}, ${`"${desc}"`}, ${loc_id}, ${camp_id});

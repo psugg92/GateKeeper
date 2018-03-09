@@ -25,13 +25,6 @@ router.post('/', (req, res) => {
         console.log(err)
         res.sendStatus(500)
     })
-
-    nodeRefTable.insert(req.body.id)
-    .then(data => {
-        res.send(data);
-    }).catch((err) => (
-        console.log(err)
-    ))
 })
 
 router.put('/', (req, res) => {

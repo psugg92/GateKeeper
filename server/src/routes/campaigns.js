@@ -1,6 +1,6 @@
 import Table from '../table';
 import { Router } from 'express';
-import { getUserCampaigns, getCampaignNodes, postUserCampaign } from '../nodeQuery';
+import { getUserCampaigns, getCampaignNodes, postUserCampaign, getCampaignLocations, postCampaignLocation } from '../nodeQuery';
 
 let router = Router();
 
@@ -57,6 +57,24 @@ router.delete('/:id', (req, res) => {
     .then((data) => {
         res.send(data);
     }).catch((err) =>(
+        console.log(err)
+    ))
+})
+
+router.get('/locations/:id', (req, res) => {
+    getCampaignLocations(req.params.id)
+    .then((results) => (
+        res.json(results)
+    )).catch((err) => (
+        console.log(err)
+    ))
+});
+
+router.post(`/locations/:id`, (req, res) => {
+    postCampaignLocation(req.body.locationName, req.body.locationDescription, req.body.locationLore, req.params.id)
+    .then((results) => {
+        res.json(results)
+    }).catch((err) => (
         console.log(err)
     ))
 })
