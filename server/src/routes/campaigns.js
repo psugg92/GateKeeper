@@ -1,6 +1,6 @@
 import Table from '../table';
 import { Router } from 'express';
-import { getUserCampaigns, getCampaignNodes, postUserCampaign, getCampaignLocations, postCampaignLocation, postNode } from '../nodeQuery';
+import { getUserCampaigns, getCampaignNodes, postUserCampaign, getCampaignLocations, postCampaignLocation, postNode,  } from '../nodeQuery';
 
 let router = Router();
 

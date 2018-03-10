@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import * as campaignsService from "../services/campaigns";
+import * as nodesService from "../services/nodes";
 import LocationMaker from "./LocationMaker";
 
-import CreateLocation from "./CreateLocation";
-import CreateNPC from "./CreateNPC";
-import CreateTrap from "./CreateTrap";
-import CreateTreasure from "./CreateTreasure";
+// import CreateLocation from "./CreateLocation";
+// import CreateNPC from "./CreateNPC";
+// import CreateTrap from "./CreateTrap";
+// import CreateTreasure from "./CreateTreasure";
 
 export default class CreateEvent extends Component {
     constructor(props) {
@@ -15,10 +16,11 @@ export default class CreateEvent extends Component {
         this.state = {
 
             locationArray: [],
+            nodeId: 0,
 
             eventName: "",
             eventDescription: "",
-            eventLocation: 0,
+            eventLocation: 1,
 
             locationName: "",
             locationDescription: "",
@@ -56,7 +58,7 @@ export default class CreateEvent extends Component {
         console.log({ locationLore: value });
     }
 
-
+    
 
     // This creates a new event node
     createLocation() {
@@ -87,9 +89,19 @@ export default class CreateEvent extends Component {
             })
     };
 
+    getNodeId() {
+        nodesService.getLastMadeId()
+        .then(data => {
+            this.setState({ nodeId: data[0].id })
+            console.log(data[0].id)
+        })
+    }
+
     
 
     render() {
+        let nodeIdVal;
+        this.state.nodeId ? nodeIdVal = <Link to={`/CreateEvent2/${this.state.nodeId}`} type="button" className="btn btn-danger btn-lg m-1" onClick={ () => {}}>NEXT</Link> : nodeIdVal = <button type="button" className="btn btn-danger btn-lg m-1" onClick={ () => { this.createNode(); this.getNodeId(); }}>Generate</button>;
         return (
             <Fragment>
                 <div className="container-fluid border-bottom border-dark p-5">
@@ -161,14 +173,19 @@ export default class CreateEvent extends Component {
                 </div>
 
                 <div className="container-fluid d-flex justify-content-center">
+                    {/* <button type="button" className="btn btn-danger btn-lg m-1" onClick={ () => { this.createNode(); this.getNodeId(); }}>
+                        Generate
+                    </button> */}
                     <Link to="/Storyboard/1" className="btn btn-danger btn-lg m-1">
                         CANCEL
                     </Link>
-                    <button type="button" className="btn btn-danger btn-lg m-1" onClick={() => { this.createNode() }}>
+                    {/* <Link to={`/CreateEvent2/${this.state.nodeId}`} type="button" className="btn btn-danger btn-lg m-1" onClick={ () => {}}>
                         NEXT
-                    </button>
+                    </Link> */}
+                    {nodeIdVal}
                 </div>
             </Fragment>
+            // to={`/CreateEvent2/${this.props.match.params.id}`}
         );
     }
 }

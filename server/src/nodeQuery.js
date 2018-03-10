@@ -138,7 +138,7 @@ export function postNPC(name,
                                     npc_lair_actions
                                 )
                     VALUE (${`"${name}"`},
-                            ${user_id},
+                            1,
                             ${`"${size}"`},
                             ${`"${alignment}"`},
                             ${armor},
@@ -167,9 +167,7 @@ export function postNPC(name,
                             ${`"${desc}"`},
                             ${`"${actions}"`},
                             ${`"${legendary_actions}"`},
-                            ${`"${lair_actions}"`})
-                    INSERT INTO node_ref (npc_id)
-                    VALUE (LAST_INSERT_ID())`
+                            ${`"${lair_actions}"`})`
                 return executeQuery(sql, [name,
                                             user_id,
                                             size,
@@ -204,4 +202,11 @@ export function postNPC(name,
                                         )
                             .then((results) => results)
             
+    }
+
+    export function getLastMadeNodeId() {
+        let sql = `SELECT id FROM nodes
+                    ORDER BY DATE(created) DESC`
+        return executeQuery(sql, [])
+            .then((results) => results)
     }

@@ -1,4 +1,4 @@
-import { getUserNPCs } from '../nodeQuery';
+import { getUserNPCs, postNPC } from '../nodeQuery';
 import { Router } from 'express';
 import Table from '../table';
 
@@ -8,6 +8,15 @@ let router = Router();
 
 router.get('/:id', (req, res) => {
     getUserNPCs(req.params.id)
+    .then((results) => (
+        res.json(results)
+    )).catch((err) => (
+        console.log(err)
+    ))
+});
+
+router.post('/', (req, res) => {
+    postNPC(req.body)
     .then((results) => (
         res.json(results)
     )).catch((err) => (

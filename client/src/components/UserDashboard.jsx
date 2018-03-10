@@ -20,28 +20,10 @@ export default class UserDashboard extends Component {
         })
     };
 
-    // handleGet() {
-    //     fetch('http://localhost:3000/api/campaigns/1', {
-    //         method: "GET",
-    //         body: JSON.stringify({
-    //             title: this.state.title,
-    //             content: this.state.content
-    //         }),
-    //         headers: new Headers({"Content-Type": "application/json"})
-    //         .then((res) => {
-    //             return res.json()
-    //         })
-    //         .then((body) => {
-    //             console.log(body)
-    //             console.log(this.state)
-    //         })
-    //     })  
-    // }
-
     render() {
         return (
             <Fragment>
-                <div className="container-fluid d-flex justify-content-center align-items-center">
+                <div className="container d-flex justify-content-center align-items-center">
                     <img src='../pics/sham.png' className='rounded-circle m-1' />
                     <h2 className="display-6 m-1">Poonslayer69</h2>
                 </div>
@@ -50,7 +32,7 @@ export default class UserDashboard extends Component {
                         CREATE NEW CAMPAIGN
                     </Link>
                 </div>
-                <div className="container-fluid d-flex justify-content-around">
+                <div className="container d-flex justify-content-around">
                     <CampaignMaker campaignList={this.state.campaignArray} />
                 </div>
             </Fragment>

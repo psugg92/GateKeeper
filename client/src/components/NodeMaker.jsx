@@ -145,9 +145,9 @@ export default class NodeMaker extends Component {
                                 <button type="button" className="btn btn-light btn-sm" data-toggle="modal" data-target="#firstEvent" onClick={() => { this.pizza(nodeInfo.id) }}>
                                     View Event
                                 </button>
-                                <button type="button" className="btn btn-light btn-sm">
+                                {/* <button type="button" className="btn btn-light btn-sm">
                                     Edit Event
-                                </button>
+                                </button> */}
                             </div>
 
 

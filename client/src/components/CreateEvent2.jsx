@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 // import * as eventsService from "../services/events";
+import * as npcsService from "../services/npcs";
 
 import CreateLocation from "./CreateLocation";
 import CreateNPC from "./CreateNPC";
@@ -275,6 +276,42 @@ export default class CreateEvent2 extends Component {
         })
     }
 
+    postNpc() {
+        npcsService.postNpc({
+            npcName: this.state.npcName,
+            npcSize: this.state.npcSize,
+            npcAlignment: this.state.npcAlignment,
+            npcArmor: this.state.npcArmor,
+            npcHitPoints: this.state.npcHitPoints,
+            npcSpeed: this.state.npcSpeed,
+            npcFlySpeed: this.state.npcFlySpeed,
+            npcClimbSpeed: this.state.npcClimbSpeed,
+            npcStrength: this.state.npcStrength,
+            npcDexterity: this.state.npcDexterity,
+            npcConstitution: this.state.npcConstitution,
+            npcIntelligence: this.state.npcIntelligence,
+            npcWisdom: this.state.npcWisdom,
+            npcCharisma: this.state.npcCharisma,
+            npcStStrength: this.state.npcStStrength,
+            npcStDexterity: this.state.npcStDexterity,
+            npcStConstitution: this.state.npcStConstitution,
+            npcStIntelligence: this.state.npcStIntelligence,
+            npcStWisdom: this.state.npcStWisdom,
+            npcStCharisma: this.state.npcStCharisma,
+            npcSkills: this.state.npcSkills,
+            npcDamageImmunity: this.state.npcDamageImmunity,
+            npcConditionImmunity: this.state.npcConditionImmunity,
+            npcSenses: this.state.npcSenses,
+            npcPassivePerception: this.state.npcPassivePerception,
+            npcChallengeRating: this.state.npcChallengeRating,
+            npcExperienceReward: this.state.npcExperienceReward,
+            npcDescription: this.state.npcDescription,
+            npcActions: this.state.npcActions,
+            npcLegendaryActions: this.state.npcLegendaryActions,
+            npcLairActions: this.state.npcLairActions,
+        })
+    }
+
 
 
     render() {
@@ -288,7 +325,7 @@ export default class CreateEvent2 extends Component {
 
                     <h3>NPCs</h3>
                     {/* Create NPC */}
-                    <button className="btn btn-danger" type="button" data-toggle="collapse" data-target="#create-npc" aria-expanded="false" aria-controls="collapseExample">
+                    <button className="btn btn-danger mb-2" type="button" data-toggle="collapse" data-target="#create-npc" aria-expanded="false" aria-controls="collapseExample">
                         CREATE NPC
                     </button>
                     <div className="collapse" id="create-npc">
@@ -508,7 +545,7 @@ export default class CreateEvent2 extends Component {
                                 <button className="btn btn-secondary" type="button" data-toggle="collapse" data-target="#create-npc" aria-expanded="false" aria-controls="collapseExample">
                                     Cancel
                                 </button>
-                                <Link to="/CreateEvent2" className="btn btn-light text-right col-1">Create</Link>
+                                <button type="button" className="btn btn-light text-right col-1" onClick={() => { this.postNpc(); }}>Create</button>
                             </div>
 
                         </div>
@@ -516,7 +553,7 @@ export default class CreateEvent2 extends Component {
 
                     <h3>Traps</h3>
                     {/* Create Trap */}
-                    <button className="btn btn-danger" type="button" data-toggle="collapse" data-target="#create-trap" aria-expanded="false" aria-controls="collapseExample">
+                    <button className="btn btn-danger mb-2" type="button" data-toggle="collapse" data-target="#create-trap" aria-expanded="false" aria-controls="collapseExample">
                         CREATE TRAP
                     </button>
                     <div className="collapse" id="create-trap">
@@ -577,7 +614,7 @@ export default class CreateEvent2 extends Component {
 
                     <h3>Treasures</h3>
                     {/* Create Treasure */}
-                    <button className="btn btn-danger" type="button" data-toggle="collapse" data-target="#create-treasure" aria-expanded="false" aria-controls="collapseExample">
+                    <button className="btn btn-danger mb-2" type="button" data-toggle="collapse" data-target="#create-treasure" aria-expanded="false" aria-controls="collapseExample">
                         CREATE TREASURE
                     </button>
                     <div className="collapse" id="create-treasure">
@@ -616,6 +653,9 @@ export default class CreateEvent2 extends Component {
                     </div>
                 </div>
 
+                <Link to="/Storyboard/1" className="btn btn-danger btn-lg m-1">
+                    FINISH
+                </Link>
             </Fragment>
         )
     }

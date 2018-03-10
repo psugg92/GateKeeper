@@ -8,11 +8,11 @@ export default class CampaignMaker extends Component {
             return (
                 <Fragment key={campaignInfo.id}>
                     {/* Campaign Cards */}
-                        <div className="card col-sm-4 p-3 mb-3 border-secondary">
+                        <div className="card col-md-4 p-3">
                             <img className="card-img-top rounded" src="../pics/cigSm.jpg" alt="Card image cap" />
                             <div className="card-body">
                                 <h5 className="card-title">{campaignInfo.campaign_name}</h5>
-                                <p className="card-text">{campaignInfo.campaign_description.substring(0, 25)}...</p>
+                                <p className="card-text">{campaignInfo.campaign_description.substring(0, 60)}...</p>
                                 <Link to={`/Storyboard/${campaignInfo.id}`} className="btn btn-danger">
                                     Enter Campaign
                                 </Link>

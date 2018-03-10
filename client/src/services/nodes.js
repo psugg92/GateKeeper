@@ -4,6 +4,10 @@ function all(id) {
     return baseService.get(`/api/campaigns/nodes/${id}`);
 }
 
+function getLastMadeId() {
+    return baseService.get(`/api/nodes`);
+}
+
 function one(id) {
     return baseService.get(`/api/campaigns/nodes/${id}`);
 }
@@ -26,4 +30,4 @@ function oneNode(id) {
 
 // function insertNode()
 
-export { all, one, insert, update, destroy, oneNode };
+export { all, one, insert, update, destroy, oneNode, getLastMadeId };
