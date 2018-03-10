@@ -5,6 +5,7 @@ import stripeDonationsRouter from './stripeDonations';
 import nodeRouter from './nodes';
 import worldRouter from './worlds';
 import npcRouter from './npc';
+import trapRouter from './traps';
 import campaignRouter from './campaigns';
 // import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
@@ -18,6 +19,7 @@ router.use('/donate', stripeDonationsRouter);
 //     .put(tokenMiddleware, isLoggedIn)
 //     .delete(tokenMiddleware, isLoggedIn);
 
+router.use('/traps', trapRouter);
 router.use('/users', usersRouter);
 router.use('/nodes', nodeRouter);
 router.use('/worlds', worldRouter);
