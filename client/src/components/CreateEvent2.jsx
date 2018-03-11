@@ -3,17 +3,28 @@ import { Link } from "react-router-dom";
 // import * as eventsService from "../services/events";
 import * as npcsService from "../services/npcs";
 import * as trapsService from "../services/traps";
+import * as treasuresService from "../services/treasures";
 
-import CreateLocation from "./CreateLocation";
-import CreateNPC from "./CreateNPC";
-import CreateTrap from "./CreateTrap";
-import CreateTreasure from "./CreateTreasure";
+import NpcMaker from "./NpcMaker";
+import TrapMaker from "./TrapMaker";
+import TreasureMaker from "./TreasureMaker";
+
 
 export default class CreateEvent2 extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+
+      npcArray: [],
+      npcId: 0,
+
+      trapArray: [],
+      trapId: 0,
+
+      treasureArray: [],
+      treasureId: 0,
+
       npcName: null,
       npcSize: null,
       npcAlignment: null,
@@ -57,6 +68,13 @@ export default class CreateEvent2 extends Component {
       treasureDescription: "",
       treasureValue: 0
     };
+  }
+
+  updateNpcArray(value) {
+    let npcArrayCopy = this.state.npcArray;
+    npcArrayCopy.push(value)
+    this.setState({ npcArray: npcArrayCopy})
+    console.log(this.state.npcArray)
   }
 
   // Update NPC Methods
@@ -309,6 +327,12 @@ export default class CreateEvent2 extends Component {
     });
   }
 
+  componentWillMount() {
+    this.getNpcList();
+    this.getTrapList();
+    this.getTreasureList();
+  }
+
   postTrap() {
     trapsService.postTrap({
       trapName: this.state.trapName,
@@ -318,6 +342,41 @@ export default class CreateEvent2 extends Component {
       trapSpotDC: this.state.trapSpotDC,
       trapDisarmDC: this.state.trapDisarmDC
     });
+  }
+
+  postTreasure() {
+    treasuresService.postTreasure({
+      treasureName: this.state.treasureName,
+      treasureValue: this.state.treasureValue,
+      treasureDescription: this.state.treasureDescription
+    });
+  }
+
+  getNpcList() {
+    npcsService.getNpcs()
+      .then(data => {
+        this.setState({ npcArray: data })
+        console.log(data);
+        console.log(this.state.npcArray)
+      })
+  }
+
+  getTrapList() {
+    trapsService.getTraps()
+    .then(data => {
+      this.setState({ trapArray: data })
+      console.log(data);
+      console.log(this.state.trapArray);
+    })
+  }
+
+  getTreasureList() {
+    treasuresService.getTreasures()
+    .then(data => {
+      this.setState({ treasureArray: data})
+      console.log(data);
+      console.log(this.state.treasureArray);
+    })
   }
 
   render() {
@@ -330,6 +389,15 @@ export default class CreateEvent2 extends Component {
         </div>
         <div className="container-fluid text-left">
           <h3>NPCs</h3>
+
+          {/* NPC Checkboxes */}
+          <div className="form-check">
+            
+            {this.state.npcArray.map((name, index) => {
+              return <NpcMaker npc={name} key={index}/>
+            })}
+          </div>
+
           {/* Create NPC */}
           <button
             className="btn btn-danger mb-2"
@@ -852,6 +920,14 @@ export default class CreateEvent2 extends Component {
           </div>
 
           <h3>Traps</h3>
+
+          {/* Trap Checkboxes */}
+          <div className="form-check">
+            {this.state.trapArray.map((name, index) => {
+              return <TrapMaker trap={name} key={index}/>
+            })}
+          </div>
+
           {/* Create Trap */}
           <button
             className="btn btn-danger mb-2"
@@ -986,6 +1062,14 @@ export default class CreateEvent2 extends Component {
           </div>
 
           <h3>Treasures</h3>
+
+          {/* Treasure Checkboxes */}
+          <div className="form-check">
+            {this.state.treasureArray.map((name, index) => {
+              return <TreasureMaker treasure={name} key={index}/>
+            })}
+          </div>
+
           {/* Create Treasure */}
           <button
             className="btn btn-danger mb-2"
@@ -1059,12 +1143,16 @@ export default class CreateEvent2 extends Component {
                 >
                   Cancel
                 </button>
-                <Link
+                <button
+                  type="button"
                   to="/CreateEvent2"
                   className="btn btn-light text-right col-1"
+                  onClick={() => {
+                    this.postTreasure();
+                  }}
                 >
                   Create
-                </Link>
+                </button>
               </div>
             </div>
           </div>

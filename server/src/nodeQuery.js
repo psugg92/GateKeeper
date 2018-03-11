@@ -72,38 +72,51 @@ export function getTraps() {
   .then(results => results);
 }
 
+export function getTreasure() {
+  let sql = `SELECT * FROM treasure`
+  return executeQuery(sql, [])
+  .then(results => results);
+}
+
+export function postTreasure(name, value, desc) {
+  let sql = `INSERT INTO treasure (loot_name, loot_value, loot_description)
+            VALUES ("${name}", ${value}, "${desc}")`
+  return executeQuery(sql, [name, value, desc])
+  .then(results => results);
+}
+
 export function postNPC(
   name,
-  user_id,
-  size = null,
-  alignment = null,
-  armor = null,
-  hp = null,
-  speed = null,
-  fly_speed = null,
-  climb_speed = null,
-  str = null,
-  dex = null,
-  con = null,
-  int = null,
-  wis = null,
-  chr = null,
-  STstr = null,
-  STdex = null,
-  STcon = null,
-  STint = null,
-  STwis = null,
-  STchr = null,
-  skills = null,
-  damage_immunity = null,
-  condition_immunity = null,
-  senses = null,
-  passive_perception = null,
-  xp_reward = null,
-  desc = null,
-  actions = null,
-  legendary_actions = null,
-  lair_actions = null
+  // user_id,
+  size,
+  alignment,
+  armor,
+  hp,
+  speed,
+  fly_speed,
+  climb_speed,
+  str,
+  dex,
+  con,
+  int,
+  wis,
+  chr,
+  STstr,
+  STdex,
+  STcon,
+  STint,
+  STwis,
+  STchr,
+  skills,
+  damage_immunity,
+  condition_immunity,
+  senses,
+  passive_perception,
+  xp_reward,
+  desc,
+  actions,
+  legendary_actions,
+  lair_actions
 ) {
   let sql = `INSERT INTO npc (npc_name,
                                     user_id,
@@ -170,7 +183,7 @@ export function postNPC(
                             "${lair_actions}")`;
   return executeQuery(sql, [
     name,
-    user_id,
+    // user_id,
     size,
     alignment,
     armor,
@@ -209,4 +222,25 @@ export function getLastMadeNodeId() {
   let sql = `SELECT id FROM nodes
                     ORDER BY DATE(created) DESC`;
   return executeQuery(sql, []).then(results => results);
+}
+
+export function insertNPCNodeRef(node_id, npc_id) {
+  let sql =  `INSERT INTO node_ref (node_id, npc_id)
+              VALUES (${node_id}, ${npc_id})`
+  return executeQuery(sql, [node_id, npc_id])
+  .then(results => results);
+}
+
+export function insertTrapNodeRef(node_id, trap_id) {
+  let sql =  `INSERT INTO node_ref (node_id, trap_id)
+              VALUES (${node_id}, ${trap_id})`
+  return executeQuery(sql, [node_id, trap_id])
+  .then(results => results);
+}
+
+export function insertTreasureNodeRef(node_id, treasure_id) {
+  let sql =  `INSERT INTO node_ref (node_id, treasure_id)
+              VALUES (${node_id}, ${treasure_id})`
+  return executeQuery(sql, [node_id, treasure_id])
+  .then(results => results);
 }

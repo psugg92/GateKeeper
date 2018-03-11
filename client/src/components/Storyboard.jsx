@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import * as nodesService from '../services/nodes';
 
 import NodeMaker from './NodeMaker';
-import CreateNPC from './CreateNPC';
 import CreateEvent from './CreateEvent';
 
 export default class Storyboard extends Component {

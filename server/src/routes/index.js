@@ -6,6 +6,7 @@ import nodeRouter from './nodes';
 import worldRouter from './worlds';
 import npcRouter from './npc';
 import trapRouter from './traps';
+import treasureRouter from './treasures';
 import campaignRouter from './campaigns';
 // import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
@@ -25,6 +26,7 @@ router.use('/nodes', nodeRouter);
 router.use('/worlds', worldRouter);
 router.use('/npc', npcRouter);
 router.use('/campaigns', campaignRouter);
+router.use('/treasures', treasureRouter);
 // router.use('/traps', trapRouter);
 
 export default router;
