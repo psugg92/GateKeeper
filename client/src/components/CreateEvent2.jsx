@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as npcsService from "../services/npcs";
 import * as trapsService from "../services/traps";
 import * as treasuresService from "../services/treasures";
-import * as nodeRefService from '../services/node_ref';
+import * as nodeRefService from '../services/noderef';
 
 import NpcMaker from "./NpcMaker";
 import TrapMaker from "./TrapMaker";
@@ -382,14 +382,42 @@ export default class CreateEvent2 extends Component {
     console.log("The ID's that would be submitted are: ", this.state.npcIdArray);
     console.log("The ID's that would be submitted are: ", this.state.trapIdArray);
     console.log("The ID's that would be submitted are: ", this.state.treasureIdArray);
-    for (let i = 0; i < this.state.npcIdArray.length; i++) {
-      nodeRefService.postNpcToNodeRef(this.props.match.params.id, this.state.npcIdArray[0])
+
+    let arrNpc = [...this.state.npcIdArray];
+    let arrTrap = [...this.state.trapIdArray];
+    let arrTreasure = [...this.state.treasureIdArray];
+
+    let greatestLength = arrNpc.length;
+    if (arrTrap.length > greatestLength) {
+      greateestLength = arrTrap.length;
     }
-    for (let i = 0; i < this.state.trapIdArray.length; i++) {
-      nodeRefService.postTrapToNodeRef(this.props.match.params.id, this.state.trapIdArray[0])
+    if (arrTreasure.length > greatestLength) {
+      greatestLength = arrTreasure.length;
     }
-    for (let i = 0; i < this.state.treasureIdArray.length; i++) {
-      nodeRefService.postTreasuresToNodeRef(this.props.match.params.id, this.state.treasureIdArray[0])
+
+    for (let i = 0; i < greatestLength; i++) {
+      let npcValue;
+      let trapValue;
+      let treasureValue;
+      if (arrNpc[i] != undefined) {
+        npcValue = arrNpc[i]
+      } else {
+        npcValue = 0
+      }
+      if (arrTrap[i] != undefined) {
+        trapValue = arrTrap[i]
+      } else {
+        trapValue = 0
+      }
+      if (arrTreasure[i] != undefined) {
+        treasureValue = arrTreasure[i]
+      } else {
+        treasureValue = 0
+      }
+
+      //console.log(this.props.match.params.id, trapValue, treasureValue, npcValue)
+
+      nodeRefService.postToNodeRef({node_id:`${this.props.match.params.id}`, trap_id: `${trapValue}`, treasure_id: `${treasureValue}`, npc_id: `${npcValue}`});
     }
   }
 
@@ -1160,17 +1188,17 @@ export default class CreateEvent2 extends Component {
 
             <div className="container col-md-3">
               <h2 className="text-left">Bank</h2>
-              <div class="card">
-                <div class="card-header" id="headingOne">
-                  <h5 class="mb-0">
-                    <button class="btn text-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <div className="card">
+                <div className="card-header" id="headingOne">
+                  <h5 className="mb-0">
+                    <button className="btn text-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                       NPCs
                     </button>
                   </h5>
                 </div>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                  <div class="card-body text-left bank">
+                <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div className="card-body text-left bank">
                     {/* NPC Checkboxes */}
                     <div className="form-check">
                       {this.state.npcArray.map((name, index) => {
@@ -1181,16 +1209,16 @@ export default class CreateEvent2 extends Component {
                 </div>
               </div>
 
-              <div class="card">
-                <div class="card-header" id="headingTwo">
-                  <h5 class="mb-0">
-                    <button class="btn text-light" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <div className="card">
+                <div className="card-header" id="headingTwo">
+                  <h5 className="mb-0">
+                    <button className="btn text-light" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                       Traps
                     </button>
                   </h5>
                 </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                  <div class="card-body text-left bank">
+                <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                  <div className="card-body text-left bank">
                     {/* Trap Checkboxes */}
                     <div className="form-check">
                       {this.state.trapArray.map((name, index) => {
@@ -1201,16 +1229,16 @@ export default class CreateEvent2 extends Component {
                 </div>
               </div>
 
-              <div class="card">
-                <div class="card-header" id="headingThree">
-                  <h5 class="mb-0">
-                    <button class="btn text-light" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <div className="card">
+                <div className="card-header" id="headingThree">
+                  <h5 className="mb-0">
+                    <button className="btn text-light" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       Treasures
                     </button>
                   </h5>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                  <div class="card-body text-left bank">
+                <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div className="card-body text-left bank">
                     {/* Treasure Checkboxes */}
                     <div className="form-check">
                       {this.state.treasureArray.map((name, index) => {

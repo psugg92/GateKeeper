@@ -38,7 +38,7 @@ export default class Storyboard extends Component {
                     </button>
 
                         {/* <!-- Delete Campaign Modal --> */}
-                        <div className="modal fade" id="delete-campaign" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div className="modal fade" id="delete-campaign" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div className="modal-dialog" role="document">
                                 <div className="modal-content bg-danger text-light">
                                     <div className="modal-header">

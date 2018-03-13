@@ -51,6 +51,7 @@ export function postCampaignLocation(name, desc, lore, camp_id) {
   );
 }
 
+//change sometime
 export function postNode(name, desc, loc_id, camp_id) {
   let sql = `CALL insertNode("${name}", "${desc}", ${loc_id}, ${camp_id})`;
   return executeQuery(sql, [name, desc, loc_id, camp_id]).then(
@@ -220,27 +221,13 @@ export function postNPC(
 
 export function getLastMadeNodeId() {
   let sql = `SELECT id FROM nodes
-                    ORDER BY DATE(created) DESC`;
+                    ORDER BY created DESC`;
   return executeQuery(sql, []).then(results => results);
 }
 
-export function insertNPCNodeRef(node_id, npc_id) {
-  let sql =  `INSERT INTO node_ref (node_id, npc_id)
-              VALUES (${node_id}, ${npc_id})`
-  return executeQuery(sql, [node_id, npc_id])
-  .then(results => results);
-}
-
-export function insertTrapNodeRef(node_id, trap_id) {
-  let sql =  `INSERT INTO node_ref (node_id, trap_id)
-              VALUES (${node_id}, ${trap_id})`
-  return executeQuery(sql, [node_id, trap_id])
-  .then(results => results);
-}
-
-export function insertTreasureNodeRef(node_id, treasure_id) {
-  let sql =  `INSERT INTO node_ref (node_id, treasure_id)
-              VALUES (${node_id}, ${treasure_id})`
-  return executeQuery(sql, [node_id, treasure_id])
+export function insertToNodeRef(node_id, trap_id = 0, treasure_id = 0, npc_id = 0) {
+  let sql =  `INSERT INTO node_ref (node_id, trap_id, treasure_id, npc_id)
+              VALUES (${node_id}, ${trap_id}, ${treasure_id}, ${npc_id})`
+  return executeQuery(sql, [node_id, trap_id, treasure_id, npc_id])
   .then(results => results);
 }

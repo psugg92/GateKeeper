@@ -71,15 +71,30 @@ export default class CreateEvent extends Component {
         }, this.props.match.params.id)
     }
 
+
+    //hardcoded user
+    //remember to change
     createNode() {
-        campaignsService.insertEvent({
+        fetch('http://localhost:3000/api/campaigns/nodes/1', {
+			method: 'post',
+			body: JSON.stringify({
+			    eventName: this.state.eventName,
+				eventDescription: this.state.eventDescription,
+				eventLocation: this.state.eventLocation,
+				campaignId: this.props.match.params.id
+			}),
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			})
+        }).then(res => res.json())
+            .then(results => {
+                // this.setState({ nodeId: results.insertId });
+                this.setState({nodeId: results[0][0].insertId}, () => {this.props.history.replace("/CreateEvent2/" + this.state.nodeId)});
+            })
+            
+    };
 
-            eventName: this.state.eventName,
-            eventDescription: this.state.eventDescription,
-            eventLocation: this.state.eventLocation
 
-        }, this.props.match.params.id)
-    }
 
     componentWillMount() {
         campaignsService.allLocations(`${this.props.match.params.id}`)
@@ -89,19 +104,9 @@ export default class CreateEvent extends Component {
             })
     };
 
-    getNodeId() {
-        nodesService.getLastMadeId()
-            .then(data => {
-                this.setState({ nodeId: data[0].id })
-                console.log(data[0].id)
-            })
-    }
-
 
 
     render() {
-        let nodeIdVal;
-        this.state.nodeId ? nodeIdVal = <Link to={`/CreateEvent2/${this.state.nodeId}`} type="button" className="btn btn-lg m-1" onClick={() => { }}>NEXT</Link> : nodeIdVal = <button type="button" className="btn btn-lg m-1" onClick={() => { this.createNode(); this.getNodeId(); }}>Generate</button>;
         return (
             <Fragment>
                 <div className="jumbotron jumbotron-fluid">
@@ -158,7 +163,7 @@ export default class CreateEvent extends Component {
                                             <input className="form-control" type="text" id="location-lore-input" onChange={(event) => { this.updateLocationLore(event.target.value) }} />
                                         </div>
                                     </div>
-
+                                    eat a dick lol
                                     <div className="form-group row">
                                         <button className="btn text-light" type="button" data-toggle="collapse" data-target="#create-location" aria-expanded="false" aria-controls="collapseExample">
                                             Cancel
@@ -181,10 +186,9 @@ export default class CreateEvent extends Component {
                     <Link to="/Storyboard/1" className="btn btn-lg text-light m-1">
                         CANCEL
                     </Link>
-                    {/* <Link to={`/CreateEvent2/${this.state.nodeId}`} type="button" className="btn btn-danger btn-lg m-1" onClick={ () => {}}>
+                    <button type="button" className="btn btn-danger btn-lg m-1" onClick={ () => {this.createNode()}}>
                         NEXT
-                    </Link> */}
-                    {nodeIdVal}
+                    </button>
                 </div>
                 </div>
             </Fragment>

@@ -8,6 +8,7 @@ import npcRouter from './npc';
 import trapRouter from './traps';
 import treasureRouter from './treasures';
 import campaignRouter from './campaigns';
+import nodeRef from './noderef'
 // import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
@@ -27,6 +28,7 @@ router.use('/worlds', worldRouter);
 router.use('/npc', npcRouter);
 router.use('/campaigns', campaignRouter);
 router.use('/treasures', treasureRouter);
+router.use('/noderef', nodeRef)
 // router.use('/traps', trapRouter);
 
 export default router;
