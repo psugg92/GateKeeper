@@ -110,9 +110,9 @@ export default class CreateEvent extends Component {
         return (
             <Fragment>
                 <div className="jumbotron jumbotron-fluid">
-                    <div className="container-fluid p-5">
+                    <div className="container p-5">
                         <div className='container-fluid d-flex ' >
-                            <h2 className="display-6 border-bottom border-dark">Create a New Event</h2>
+                            <h2 className="display-6 border-bottom border-light">Create a New Event</h2>
                         </div>
                         <div className="d-flex flex-column">
                             <div className="p-2 text-left">Name of Event:</div>

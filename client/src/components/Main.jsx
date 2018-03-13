@@ -23,19 +23,19 @@ export default class Main extends Component {
                     </div>
                 </div>
                 <div className="container-fluid d-flex justify-content-around">
-                    <div className="card col-sm-3 d-flex">
+                    <div className="card col-md-3 d-flex p-2">
                         <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
                         <div className="card-body">
                             <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
-                    <div className="card col-sm-3 d-flex">
+                    <div className="card col-md-3 d-flex p-2">
                         <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
                         <div className="card-body">
                             <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
-                    <div className="card col-sm-3 d-flex">
+                    <div className="card col-md-3 d-flex p-2">
                         <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
                         <div className="card-body">
                             <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
