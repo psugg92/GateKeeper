@@ -11,7 +11,9 @@ export default class Header extends Component {
             <Fragment>
                 <div className="d-flex justify-content-start align-items-center" id="top">
                     <Link to='/'>
-                        <img src="../pics/logo.png" className='ml-3 mt-3 mr-1' />
+                    <span id="edit-img">
+                        <img src="../pics/logo_white.png" className='ml-3 mt-3 mr-1' />
+                    </span>
                     </Link>
                     {/* <Link to='/' style={{ textDecoration: 'none' }}> */}
                         {/* <h1 className="display-3 ml-1 mb-1 mt-2">Gatekeeper</h1> */}

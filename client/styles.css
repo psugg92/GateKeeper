@@ -2,6 +2,7 @@ body {
   text-align: center;
   /* background:url(https://66.media.tumblr.com/ad392a5f11674074ddccd754e1cfadf9/tumblr_mfpaevAhTB1qdv5ueo1_500.gif) */
   color: white;
+  background-color: #FF9033;
 }
 
 #hide {
@@ -83,7 +84,7 @@ body {
   }
 
 #top {
-  background-color: #178383;
+  background-color: #0097B2;
 }
 
 @media(min-width: 768px) {
@@ -94,15 +95,15 @@ body {
 }
 
 .btn {
-  background-color: #DA6827;
+  background-color: #FF9033;
 }
 
 .card {
-  background-color: #178383;  
+  background-color: #0097B2;  
 }
 
 .jumbotron {
-  background-color: #178383;
+  background-color: #0097B2;
 }
 
 .alert {
@@ -110,7 +111,7 @@ body {
 }
 
 .dropdownCard {
-  background-color: #DA6827
+  background-color: #FF9033
 }
 
 .bank {
@@ -119,5 +120,9 @@ body {
 }
 
 .bank-text {
-  color: #178383;
+  color: #0097B2;
+}
+
+#edit-img:hover img {
+  -webkit-filter: invert(100%);
 }
