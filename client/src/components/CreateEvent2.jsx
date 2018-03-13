@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import * as npcsService from "../services/npcs";
 import * as trapsService from "../services/traps";
 import * as treasuresService from "../services/treasures";
+import * as nodeRefService from '../services/node_ref';
 
 import NpcMaker from "./NpcMaker";
 import TrapMaker from "./TrapMaker";
@@ -17,12 +18,15 @@ export default class CreateEvent2 extends Component {
     this.state = {
 
       npcArray: [],
+      npcIdArray: [],
       npcId: 0,
 
       trapArray: [],
+      trapIdArray: [],
       trapId: 0,
 
       treasureArray: [],
+      treasureIdArray: [],
       treasureId: 0,
 
       npcName: null,
@@ -73,7 +77,7 @@ export default class CreateEvent2 extends Component {
   updateNpcArray(value) {
     let npcArrayCopy = this.state.npcArray;
     npcArrayCopy.push(value)
-    this.setState({ npcArray: npcArrayCopy})
+    this.setState({ npcArray: npcArrayCopy })
     console.log(this.state.npcArray)
   }
 
@@ -244,53 +248,6 @@ export default class CreateEvent2 extends Component {
   }
 
   // This creates a new event node
-  createEvent() {
-    eventsService.insert({
-      npcName: this.state.npcName,
-      npcSize: this.state.npcSize,
-      npcAlignment: this.state.npcAlignment,
-      npcArmor: this.state.npcArmor,
-      npcHitPoints: this.state.npcHitPoints,
-      npcSpeed: this.state.npcSpeed,
-      npcFlySpeed: this.state.npcFlySpeed,
-      npcClimbSpeed: this.state.npcClimbSpeed,
-      npcStrength: this.state.npcStrength,
-      npcDexterity: this.state.npcDexterity,
-      npcConstitution: this.state.npcConstitution,
-      npcIntelligence: this.state.npcIntelligence,
-      npcWisdom: this.state.npcWisdom,
-      npcCharisma: this.state.npcCharisma,
-      npcStStrength: this.state.npcStStrength,
-      npcStDexterity: this.state.npcStDexterity,
-      npcStConstitution: this.state.npcStConstitution,
-      npcStIntelligence: this.state.npcStIntelligence,
-      npcStWisdom: this.state.npcStWisdom,
-      npcStCharisma: this.state.npcStCharisma,
-      npcSkills: this.state.npcSkills,
-      npcDamageImmunity: this.state.npcDamageImmunity,
-      npcConditionImmunity: this.state.npcConditionImmunity,
-      npcSenses: this.state.npcSenses,
-      npcPassivePerception: this.state.npcPassivePerception,
-      npcChallengeRating: this.state.npcChallengeRating,
-      npcExperienceReward: this.state.npcExperienceReward,
-      npcDescription: this.state.npcDescription,
-      npcActions: this.state.npcActions,
-      npcLegendaryActions: this.state.npcLegendaryActions,
-      npcLairActions: this.state.npcLairActions,
-
-      trapName: this.state.trapName,
-      trapDescription: this.state.trapDescription,
-      trapType: this.state.trapType,
-      trapDamage: this.state.trapDamage,
-      trapSpotDC: this.state.trapSpotDC,
-      trapDisarmDC: this.state.trapDisarmDC,
-
-      treasureName: this.state.treasureName,
-      treasureDescription: this.state.treasureDescription,
-      treasureValue: this.state.treasureValue
-    });
-  }
-
   postNpc() {
     npcsService.postNpc({
       npcName: this.state.npcName,
@@ -363,804 +320,917 @@ export default class CreateEvent2 extends Component {
 
   getTrapList() {
     trapsService.getTraps()
-    .then(data => {
-      this.setState({ trapArray: data })
-      console.log(data);
-      console.log(this.state.trapArray);
-    })
+      .then(data => {
+        this.setState({ trapArray: data })
+        console.log(data);
+        console.log(this.state.trapArray);
+      })
   }
 
   getTreasureList() {
     treasuresService.getTreasures()
-    .then(data => {
-      this.setState({ treasureArray: data})
-      console.log(data);
-      console.log(this.state.treasureArray);
-    })
+      .then(data => {
+        this.setState({ treasureArray: data })
+        console.log(data);
+        console.log(this.state.treasureArray);
+      })
+  }
+
+  addNpcId(id) {
+    let arr = [...this.state.npcIdArray];
+    arr.push(id)
+    this.setState({ npcIdArray: arr })
+    console.log("This is the array of NPC ID's ", this.state.npcIdArray);
+  }
+
+  removeNpcId(id) {
+    let arr = [...this.state.npcIdArray];
+    let index = arr.indexOf(id);
+    arr.splice(index, 1);
+    this.setState({ npcIdArray: arr });
+  }
+
+  addTrapId(id) {
+    let arr = [...this.state.trapIdArray]
+    arr.push(id)
+    this.setState({ trapIdArray: arr })
+    console.log("This is the array of Trap ID's ", this.state.trapIdArray);
+  }
+
+  removeTrapId(id) {
+    let arr = [...this.state.trapIdArray]
+    let index = arr.indexOf(id);
+    arr.splice(index, 1);
+    this.setState({ trapIdArray: arr });
+  }
+
+  addTreasureId(id) {
+    let arr = [...this.state.treasureIdArray]
+    arr.push(id)
+    this.setState({ treasureIdArray: arr });
+    console.log("This is the array of Treasure ID's ", this.state.treasureIdArray);
+  }
+
+  removeTreasureId(id) {
+    let arr = [...this.state.treasureIdArray]
+    let index = arr.indexOf(id);
+    arr.splice(index, 1);
+    this.setState({ treasureIdArray: arr })
+  }
+
+  handleSubmit() {
+    console.log("The ID's that would be submitted are: ", this.state.npcIdArray);
+    console.log("The ID's that would be submitted are: ", this.state.trapIdArray);
+    console.log("The ID's that would be submitted are: ", this.state.treasureIdArray);
+    for (let i = 0; i < this.state.npcIdArray.length; i++) {
+      nodeRefService.postNpcToNodeRef(this.props.match.params.id, this.state.npcIdArray[0])
+    }
+    for (let i = 0; i < this.state.trapIdArray.length; i++) {
+      nodeRefService.postTrapToNodeRef(this.props.match.params.id, this.state.trapIdArray[0])
+    }
+    for (let i = 0; i < this.state.treasureIdArray.length; i++) {
+      nodeRefService.postTreasuresToNodeRef(this.props.match.params.id, this.state.treasureIdArray[0])
+    }
   }
 
   render() {
     return (
       <Fragment>
-        <div className="container-fluid d-flex justify-content-start p-5">
-          <h2 className="display-6 border-bottom border-dark">
-            Create a New Event
-          </h2>
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container d-flex justify-content-center p-3">
+            <h1 className="display-6">
+              Create a New Event
+            </h1>
+          </div>
+          <div className="container p-0">
+            <div className="alert alert-light text-left"  role="alert">
+              Use this page to add NPCs, Traps, Treasures to your event. All of this is optional, so feel free to click the "FINISH" button when ready.
+            </div>
+          </div>
+
+          <div className="container-fluid d-flex">
+            <div className="container col-md-9 text-left">
+              <h2>NPCs</h2>
+
+              {/* Create NPC */}
+              <button
+                className="btn mb-2"
+                type="button"
+                data-toggle="collapse"
+                data-target="#create-npc"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+              >
+                CREATE NPC
+          </button>
+              <div className="collapse" id="create-npc">
+                <div className="card card-body dropdownCard">
+                  <h3 className="text-light py-1 font-italic">Basic Information</h3>
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Name:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-name-input"
+                        onChange={event => {
+                          this.updateNpcName(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Description:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-description-input"
+                        onChange={event => {
+                          this.updateNpcDescription(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <h3 className="text-light py-1 font-italic">Ability Scores</h3>
+                  <div className="form-group row py-1">
+                    <label className="col-1 col-form-label text-light text-right">
+                      STR:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-strength-input"
+                        onChange={event => {
+                          this.updateNpcStrength(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      DEX:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-dexterity-input"
+                        onChange={event => {
+                          this.updateNpcDexterity(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      CON:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-constitution-input"
+                        onChange={event => {
+                          this.updateNpcConstitution(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      INT:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-intelligence-input"
+                        onChange={event => {
+                          this.updateNpcIntelligence(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      WIS:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-wisdom-input"
+                        onChange={event => {
+                          this.updateNpcWisdom(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      CHA:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-charisma-input"
+                        onChange={event => {
+                          this.updateNpcCharisma(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <h3 className="text-light py-1 font-italic">Saving Throws</h3>
+                  <div className="form-group row py-1">
+                    <label className="col-1 col-form-label text-light text-right">
+                      STR ST:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-saving-strength-input"
+                        onChange={event => {
+                          this.updateNpcStStrength(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      DEX ST:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-saving-dexterity-input"
+                        onChange={event => {
+                          this.updateNpcStDexterity(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      CON ST:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-saving-constitution-input"
+                        onChange={event => {
+                          this.updateNpcStConstitution(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      INT ST:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-saving-intelligence-input"
+                        onChange={event => {
+                          this.updateNpcStIntelligence(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      WIS ST:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-saving-wisdom-input"
+                        onChange={event => {
+                          this.updateNpcStWisdom(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-1 col-form-label text-light text-right">
+                      CHA ST:
+                </label>
+                    <div className="col-1">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-saving-charisma-input"
+                        onChange={event => {
+                          this.updateNpcStCharisma(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <h3 className="text-light py-1 font-italic">Stats</h3>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Size:
+                </label>
+                    <div className="col-4">
+                      <select
+                        className="form-control"
+                        id="npc-select-size-input"
+                        onChange={event => {
+                          this.updateNpcSize(event.target.value);
+                        }}
+                      >
+                        <option>Tiny (less than 2 ft.)</option>
+                        <option>Small (3 - 5 ft.)</option>
+                        <option>Medium (5 - 9 ft.)</option>
+                        <option>Large (10 - 14 ft.)</option>
+                        <option>Huge (15 - 19 ft.</option>
+                        <option>Gargantuan (20 ft. or larger)</option>
+                      </select>
+                    </div>
+
+                    <label className="col-2 col-form-label text-light text-right">
+                      Alignment:
+                </label>
+                    <div className="col-4">
+                      <select
+                        className="form-control"
+                        id="npc-select-alignment-input"
+                        onChange={event => {
+                          this.updateNpcAlignment(event.target.value);
+                        }}
+                      >
+                        <option>Lawful Good</option>
+                        <option>Neutral Good</option>
+                        <option>Chaotic Good</option>
+                        <option>Lawful Neutral</option>
+                        <option>True Neutral</option>
+                        <option>Chaotic Neutral</option>
+                        <option>Lawful Evil</option>
+                        <option>Neutral Evil</option>
+                        <option>Chaotic Evil</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Armor:
+                </label>
+                    <div className="col-4">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-armor-input"
+                        onChange={event => {
+                          this.updateNpcArmor(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-2 col-form-label text-light text-right">
+                      Hitpoints:
+                </label>
+                    <div className="col-4">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-hitpoints-input"
+                        onChange={event => {
+                          this.updateNpcHitPoints(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Passive Perception:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-passivePerception-input"
+                        onChange={event => {
+                          this.updateNpcPassivePerception(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-2 col-form-label text-light text-right">
+                      Challenge Rating:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-challengeRating-input"
+                        onChange={event => {
+                          this.updateNpcChallengeRating(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-2 col-form-label text-light text-right">
+                      Experience Reward:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-experienceReward-input"
+                        onChange={event => {
+                          this.updateNpcExperienceReward(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Speed:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-speed-input"
+                        onChange={event => {
+                          this.updateNpcSpeed(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-2 col-form-label text-light text-right">
+                      Fly Speed:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-flySpeed-input"
+                        onChange={event => {
+                          this.updateNpcFlySpeed(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-2 col-form-label text-light text-right">
+                      Climb Speed:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="npc-climbSpeed-input"
+                        onChange={event => {
+                          this.updateNpcClimbSpeed(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Skills:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-skills-input"
+                        onChange={event => {
+                          this.updateNpcSkills(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Senses:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-senses-input"
+                        onChange={event => {
+                          this.updateNpcSenses(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Damage Immunity:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-damageImmunity-input"
+                        onChange={event => {
+                          this.updateNpcDamageImmunity(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Condition Immunity:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-conditionImmunity-input"
+                        onChange={event => {
+                          this.updateNpcConditionImmunity(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <h3 className="text-light py-1 font-italic">Actions</h3>
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Basic Actions:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-actions-input"
+                        onChange={event => {
+                          this.updateNpcActions(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Legendary Actions:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-legendaryActions-input"
+                        onChange={event => {
+                          this.updateNpcLegendaryActions(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Lair Actions:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="npc-lairActions-input"
+                        onChange={event => {
+                          this.updateNpcLairActions(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group row py-1">
+                    <button
+                      className="btn"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#create-npc"
+                      aria-expanded="false"
+                      aria-controls="collapseExample"
+                    >
+                      Cancel
+                </button>
+                    <button
+                      type="button"
+                      className="btn text-right col-1"
+                      onClick={() => {
+                        this.postNpc();
+                      }}
+                    >
+                      Create
+                </button>
+                  </div>
+                </div>
+              </div>
+
+              <h2>Traps</h2>
+
+              {/* Create Trap */}
+              <button
+                className="btn mb-2"
+                type="button"
+                data-toggle="collapse"
+                data-target="#create-trap"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+              >
+                CREATE TRAP
+          </button>
+              <div className="collapse" id="create-trap">
+                <div className="card card-body dropdownCard">
+                  <h3 className="text-light py-1 font-italic">Basic Information</h3>
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Name:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="trap-name-input"
+                        onChange={event => {
+                          this.updateTrapName(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Description:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="trap-description-input"
+                        onChange={event => {
+                          this.updateTrapDescription(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <h3 className="text-light py-1 font-italic">Stats</h3>
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Trap Type:
+                </label>
+                    <div className="col-10">
+                      <select
+                        className="form-control"
+                        id="trap-select-trap-input"
+                        onChange={event => {
+                          this.updateTrapType(event.target.value);
+                        }}
+                      >
+                        <option>Mechanical</option>
+                        <option>Magical</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Damage:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="trap-damage-input"
+                        onChange={event => {
+                          this.updateTrapDamage(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-2 col-form-label text-light text-right">
+                      Spot DC:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="trap-spotDC-input"
+                        onChange={event => {
+                          this.updateTrapSpotDC(event.target.value);
+                        }}
+                      />
+                    </div>
+
+                    <label className="col-2 col-form-label text-light text-right">
+                      Disarm DC:
+                </label>
+                    <div className="col-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="trap-disarmDC-input"
+                        onChange={event => {
+                          this.updateTrapDisarmDC(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <button
+                      className="btn"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#create-trap"
+                      aria-expanded="false"
+                      aria-controls="collapseExample"
+                    >
+                      Cancel
+                </button>
+                    <button
+                      type="button"
+                      className="btn text-right col-1"
+                      onClick={() => {
+                        this.postTrap();
+                      }}
+                    >
+                      Create
+                </button>
+                  </div>
+                </div>
+              </div>
+
+              <h2>Treasures</h2>
+
+              {/* Create Treasure */}
+              <button
+                className="btn mb-2"
+                type="button"
+                data-toggle="collapse"
+                data-target="#create-treasure"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+              >
+                CREATE TREASURE
+          </button>
+              <div className="collapse" id="create-treasure">
+                <div className="card card-body dropdownCard">
+                  <h3 className="text-light py-1 font-italic">Basic Information</h3>
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Name:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="treasure-name-input"
+                        onChange={event => {
+                          this.updateTreasureName(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Description:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id="treasure-description-input"
+                        onChange={event => {
+                          this.updateTreasureDescription(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <label className="col-2 col-form-label text-light text-right">
+                      Value:
+                </label>
+                    <div className="col-10">
+                      <input
+                        className="form-control"
+                        type="number"
+                        id="treasure-value-input"
+                        onChange={event => {
+                          this.updateTreasureValue(event.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group row py-1">
+                    <button
+                      className="btn"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#create-treasure"
+                      aria-expanded="false"
+                      aria-controls="collapseExample"
+                    >
+                      Cancel
+                </button>
+                    <button
+                      type="button"
+                      to="/CreateEvent2"
+                      className="btn text-right col-1"
+                      onClick={() => {
+                        this.postTreasure();
+                      }}
+                    >
+                      Create
+                </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="container col-md-3">
+              <h2 className="text-left">Bank</h2>
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn text-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      NPCs
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body text-left bank">
+                    {/* NPC Checkboxes */}
+                    <div className="form-check">
+                      {this.state.npcArray.map((name, index) => {
+                        return <NpcMaker AddId={(id) => { this.addNpcId(id) }} Remove={(id) => { this.removeNpcId(id) }} npc={name} key={index} />
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h5 class="mb-0">
+                    <button class="btn text-light" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Traps
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                  <div class="card-body text-left bank">
+                    {/* Trap Checkboxes */}
+                    <div className="form-check">
+                      {this.state.trapArray.map((name, index) => {
+                        return <TrapMaker AddId={(id) => { this.addTrapId(id) }} Remove={(id) => { this.removeTrapId(id) }} trap={name} key={index} />
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                    <button class="btn text-light" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Treasures
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body text-left bank">
+                    {/* Treasure Checkboxes */}
+                    <div className="form-check">
+                      {this.state.treasureArray.map((name, index) => {
+                        return <TreasureMaker AddId={(id) => { this.addTreasureId(id) }} Remove={(id) => { this.removeTreasureId(id) }} treasure={name} key={index} />
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <button className="btn btn-lg text-white" onClick={() => {
+            this.handleSubmit()
+          }}>
+            FINISH
+       </button>
         </div>
-        <div className="container-fluid text-left">
-          <h3>NPCs</h3>
-
-          {/* NPC Checkboxes */}
-          <div className="form-check">
-            
-            {this.state.npcArray.map((name, index) => {
-              return <NpcMaker npc={name} key={index}/>
-            })}
-          </div>
-
-          {/* Create NPC */}
-          <button
-            className="btn btn-danger mb-2"
-            type="button"
-            data-toggle="collapse"
-            data-target="#create-npc"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            CREATE NPC
-          </button>
-          <div className="collapse" id="create-npc">
-            <div className="card card-body bg-danger">
-              <h3 className="text-light py-1 font-italic">Basic Information</h3>
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Name:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-name-input"
-                    onChange={event => {
-                      this.updateNpcName(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Description:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-description-input"
-                    onChange={event => {
-                      this.updateNpcDescription(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <h3 className="text-light py-1 font-italic">Ability Scores</h3>
-              <div className="form-group row py-1">
-                <label className="col-1 col-form-label text-light text-right">
-                  STR:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-strength-input"
-                    onChange={event => {
-                      this.updateNpcStrength(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  DEX:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-dexterity-input"
-                    onChange={event => {
-                      this.updateNpcDexterity(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  CON:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-constitution-input"
-                    onChange={event => {
-                      this.updateNpcConstitution(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  INT:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-intelligence-input"
-                    onChange={event => {
-                      this.updateNpcIntelligence(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  WIS:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-wisdom-input"
-                    onChange={event => {
-                      this.updateNpcWisdom(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  CHA:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-charisma-input"
-                    onChange={event => {
-                      this.updateNpcCharisma(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <h3 className="text-light py-1 font-italic">Saving Throws</h3>
-              <div className="form-group row py-1">
-                <label className="col-1 col-form-label text-light text-right">
-                  STR ST:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-saving-strength-input"
-                    onChange={event => {
-                      this.updateNpcStStrength(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  DEX ST:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-saving-dexterity-input"
-                    onChange={event => {
-                      this.updateNpcStDexterity(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  CON ST:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-saving-constitution-input"
-                    onChange={event => {
-                      this.updateNpcStConstitution(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  INT ST:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-saving-intelligence-input"
-                    onChange={event => {
-                      this.updateNpcStIntelligence(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  WIS ST:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-saving-wisdom-input"
-                    onChange={event => {
-                      this.updateNpcStWisdom(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-1 col-form-label text-light text-right">
-                  CHA ST:
-                </label>
-                <div className="col-1">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-saving-charisma-input"
-                    onChange={event => {
-                      this.updateNpcStCharisma(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <h3 className="text-light py-1 font-italic">Stats</h3>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Size:
-                </label>
-                <div className="col-4">
-                  <select
-                    className="form-control"
-                    id="npc-select-size-input"
-                    onChange={event => {
-                      this.updateNpcSize(event.target.value);
-                    }}
-                  >
-                    <option>Tiny (less than 2 ft.)</option>
-                    <option>Small (3 - 5 ft.)</option>
-                    <option>Medium (5 - 9 ft.)</option>
-                    <option>Large (10 - 14 ft.)</option>
-                    <option>Huge (15 - 19 ft.</option>
-                    <option>Gargantuan (20 ft. or larger)</option>
-                  </select>
-                </div>
-
-                <label className="col-2 col-form-label text-light text-right">
-                  Alignment:
-                </label>
-                <div className="col-4">
-                  <select
-                    className="form-control"
-                    id="npc-select-alignment-input"
-                    onChange={event => {
-                      this.updateNpcAlignment(event.target.value);
-                    }}
-                  >
-                    <option>Lawful Good</option>
-                    <option>Neutral Good</option>
-                    <option>Chaotic Good</option>
-                    <option>Lawful Neutral</option>
-                    <option>True Neutral</option>
-                    <option>Chaotic Neutral</option>
-                    <option>Lawful Evil</option>
-                    <option>Neutral Evil</option>
-                    <option>Chaotic Evil</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Armor:
-                </label>
-                <div className="col-4">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-armor-input"
-                    onChange={event => {
-                      this.updateNpcArmor(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-2 col-form-label text-light text-right">
-                  Hitpoints:
-                </label>
-                <div className="col-4">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-hitpoints-input"
-                    onChange={event => {
-                      this.updateNpcHitPoints(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Passive Perception:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-passivePerception-input"
-                    onChange={event => {
-                      this.updateNpcPassivePerception(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-2 col-form-label text-light text-right">
-                  Challenge Rating:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-challengeRating-input"
-                    onChange={event => {
-                      this.updateNpcChallengeRating(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-2 col-form-label text-light text-right">
-                  Experience Reward:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-experienceReward-input"
-                    onChange={event => {
-                      this.updateNpcExperienceReward(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Speed:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-speed-input"
-                    onChange={event => {
-                      this.updateNpcSpeed(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-2 col-form-label text-light text-right">
-                  Fly Speed:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-flySpeed-input"
-                    onChange={event => {
-                      this.updateNpcFlySpeed(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-2 col-form-label text-light text-right">
-                  Climb Speed:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="npc-climbSpeed-input"
-                    onChange={event => {
-                      this.updateNpcClimbSpeed(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Skills:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-skills-input"
-                    onChange={event => {
-                      this.updateNpcSkills(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Senses:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-senses-input"
-                    onChange={event => {
-                      this.updateNpcSenses(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Damage Immunity:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-damageImmunity-input"
-                    onChange={event => {
-                      this.updateNpcDamageImmunity(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Condition Immunity:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-conditionImmunity-input"
-                    onChange={event => {
-                      this.updateNpcConditionImmunity(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <h3 className="text-light py-1 font-italic">Actions</h3>
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Basic Actions:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-actions-input"
-                    onChange={event => {
-                      this.updateNpcActions(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Legendary Actions:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-legendaryActions-input"
-                    onChange={event => {
-                      this.updateNpcLegendaryActions(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Lair Actions:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="npc-lairActions-input"
-                    onChange={event => {
-                      this.updateNpcLairActions(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="form-group row py-1">
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#create-npc"
-                  aria-expanded="false"
-                  aria-controls="collapseExample"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-light text-right col-1"
-                  onClick={() => {
-                    this.postNpc();
-                  }}
-                >
-                  Create
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <h3>Traps</h3>
-
-          {/* Trap Checkboxes */}
-          <div className="form-check">
-            {this.state.trapArray.map((name, index) => {
-              return <TrapMaker trap={name} key={index}/>
-            })}
-          </div>
-
-          {/* Create Trap */}
-          <button
-            className="btn btn-danger mb-2"
-            type="button"
-            data-toggle="collapse"
-            data-target="#create-trap"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            CREATE TRAP
-          </button>
-          <div className="collapse" id="create-trap">
-            <div className="card card-body bg-danger">
-              <h3 className="text-light py-1 font-italic">Basic Information</h3>
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Name:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="trap-name-input"
-                    onChange={event => {
-                      this.updateTrapName(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Description:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="trap-description-input"
-                    onChange={event => {
-                      this.updateTrapDescription(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <h3 className="text-light py-1 font-italic">Stats</h3>
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Trap Type:
-                </label>
-                <div className="col-10">
-                  <select
-                    className="form-control"
-                    id="trap-select-trap-input"
-                    onChange={event => {
-                      this.updateTrapType(event.target.value);
-                    }}
-                  >
-                    <option>Mechanical</option>
-                    <option>Magical</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Damage:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="trap-damage-input"
-                    onChange={event => {
-                      this.updateTrapDamage(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-2 col-form-label text-light text-right">
-                  Spot DC:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="trap-spotDC-input"
-                    onChange={event => {
-                      this.updateTrapSpotDC(event.target.value);
-                    }}
-                  />
-                </div>
-
-                <label className="col-2 col-form-label text-light text-right">
-                  Disarm DC:
-                </label>
-                <div className="col-2">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="trap-disarmDC-input"
-                    onChange={event => {
-                      this.updateTrapDisarmDC(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#create-trap"
-                  aria-expanded="false"
-                  aria-controls="collapseExample"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-light text-right col-1"
-                  onClick={() => {
-                    this.postTrap();
-                  }}
-                >
-                  Create
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <h3>Treasures</h3>
-
-          {/* Treasure Checkboxes */}
-          <div className="form-check">
-            {this.state.treasureArray.map((name, index) => {
-              return <TreasureMaker treasure={name} key={index}/>
-            })}
-          </div>
-
-          {/* Create Treasure */}
-          <button
-            className="btn btn-danger mb-2"
-            type="button"
-            data-toggle="collapse"
-            data-target="#create-treasure"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            CREATE TREASURE
-          </button>
-          <div className="collapse" id="create-treasure">
-            <div className="card card-body bg-danger">
-              <h3 className="text-light py-1 font-italic">Basic Information</h3>
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Name:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="treasure-name-input"
-                    onChange={event => {
-                      this.updateTreasureName(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Description:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="treasure-description-input"
-                    onChange={event => {
-                      this.updateTreasureDescription(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <label className="col-2 col-form-label text-light text-right">
-                  Value:
-                </label>
-                <div className="col-10">
-                  <input
-                    className="form-control"
-                    type="number"
-                    id="treasure-value-input"
-                    onChange={event => {
-                      this.updateTreasureValue(event.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row py-1">
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#create-treasure"
-                  aria-expanded="false"
-                  aria-controls="collapseExample"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  to="/CreateEvent2"
-                  className="btn btn-light text-right col-1"
-                  onClick={() => {
-                    this.postTreasure();
-                  }}
-                >
-                  Create
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <Link to="/Storyboard/1" className="btn btn-danger btn-lg m-1">
-          FINISH
-        </Link>
       </Fragment>
     );
   }

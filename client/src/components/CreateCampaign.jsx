@@ -34,30 +34,32 @@ export default class CreateCampaign extends Component {
     render() {
         return (
             <Fragment>
-                <div className='container-fluid d-flex justify-content-center' >
-                    <h2 className="display-6 border-bottom border-dark">Create a New Campaign</h2>
-                </div>
-                <div className='container-fluid d-flex justify-content-center'>
-                    <div className="d-flex flex-column">
-                        <div className="p-2">Name of Campaign:</div>
-                        <textarea onChange={(event) => { this.updateCampaignName(event.target.value) }}
-                            className="form-control p-1 m-2"
-                            id="exampleFormControlTextarea1"
-                            rows="1"
-                        />
-                        <div className="p-2">Short Description:</div>
-                        <textarea onChange={(event) => { this.updateCampaignDescription(event.target.value) }}
-                            className="form-control p-1 m-2"
-                            id="exampleFormControlTextarea1"
-                            rows="5"
-                        />
-                        <div className="container-fluid d-flex justify-content-center">
-                            <Link to='/UserDashboard' onClick={() => { this.createCampaign()}} className="btn btn-danger btn-lg">
-                                CREATE CAMPAIGN
+                <div className="jumbotron jumbotron-fluid">
+                    <div className='container-fluid d-flex justify-content-center' >
+                        <h2 className="display-6 border-bottom border-light">Create a New Campaign</h2>
+                    </div>
+                    <div className='container-fluid d-flex justify-content-center'>
+                        <div className="d-flex flex-column">
+                            <div className="p-2">Name of Campaign:</div>
+                            <textarea onChange={(event) => { this.updateCampaignName(event.target.value) }}
+                                className="form-control p-1 m-2"
+                                id="exampleFormControlTextarea1"
+                                rows="1"
+                            />
+                            <div className="p-2">Short Description:</div>
+                            <textarea onChange={(event) => { this.updateCampaignDescription(event.target.value) }}
+                                className="form-control p-1 m-2"
+                                id="exampleFormControlTextarea1"
+                                rows="5"
+                            />
+                            <div className="container-fluid d-flex justify-content-center">
+                                <Link to='/UserDashboard' onClick={() => { this.createCampaign() }} className="btn text-light btn-lg">
+                                    CREATE CAMPAIGN
                             </Link>
-                            <Link to='../UserDashboard' className="btn btn-danger btn-lg">
-                                CANCEL
+                                <Link to='../UserDashboard' className="btn text-light btn-lg">
+                                    CANCEL
                             </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

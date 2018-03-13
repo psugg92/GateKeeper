@@ -13,7 +13,7 @@ export default class CampaignMaker extends Component {
                             <div className="card-body">
                                 <h5 className="card-title">{campaignInfo.campaign_name}</h5>
                                 <p className="card-text">{campaignInfo.campaign_description.substring(0, 60)}...</p>
-                                <Link to={`/Storyboard/${campaignInfo.id}`} className="btn btn-danger">
+                                <Link to={`/Storyboard/${campaignInfo.id}`} className="btn text-light">
                                     Enter Campaign
                                 </Link>
                             </div>

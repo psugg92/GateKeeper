@@ -14,7 +14,7 @@ export default class Main extends Component {
                     <div className="container">
                         <h1 className="display-3">Welcome to Gatekeeper!</h1>
                         <p className="lead">This is a good ass application. Sign up if you ain't a bitch</p>
-                        <Link to='/SignUp' className="btn btn-danger btn-lg">
+                        <Link to='/SignUp' className="btn btn-lg text-light">
                             SIGN UP
                         </Link>
                     </div>
@@ -26,19 +26,19 @@ export default class Main extends Component {
                     <div className="card col-sm-3 d-flex">
                         <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
                         <div className="card-body">
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
                     <div className="card col-sm-3 d-flex">
                         <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
                         <div className="card-body">
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
                     <div className="card col-sm-3 d-flex">
                         <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
                         <div className="card-body">
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
                 </div>

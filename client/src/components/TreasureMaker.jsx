@@ -6,14 +6,32 @@ export default class TreasureMaker extends Component {
         super(props)
 
         this.state = {
-            id: this.props.treasure.id
+            id: this.props.treasure.id,
+            checked: false
         }
     }
+
+    handleChange() { 
+        console.log(this.state.checked)
+         if(this.state.checked === true) {
+             console.log("checked")
+             this.props.AddId(this.state.id)
+ 
+         } else if(this.state.checked === false) {
+             console.log("unchecked")
+             this.props.Remove(this.state.id)
+         }
+     }
+
     render() {
         return( 
             <div>
-                <input className="form-check-input" type="checkbox" value={this.state.id} />
-                <label className="form-check-label">
+                <input className="form-check-input" type="checkbox" value={this.state.id} onChange={ () => {
+                    this.setState({checked: !this.state.checked}, () => {
+                        this.handleChange();
+                    })
+                }} />
+                <label className="form-check-label bank-text">
                     {this.props.treasure.loot_name}
                 </label>
             </div>

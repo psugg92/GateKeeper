@@ -1,6 +1,7 @@
-import { getUserNPCs, postNPC } from "../nodeQuery";
+import { getUserNPCs, postNPC, insertNPCNodeRef } from "../nodeQuery";
 import { Router } from "express";
 import Table from "../table";
+
 
 let npcTable = new Table("npc");
 
@@ -52,6 +53,17 @@ router.post("/", (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+router.post('/insert', (req, res) => {
+  insertNPCNodeRef(req.params.id, req.body.id)
+  .then(data => {
+      res.json(data);
+  }).catch(err => {
+      console.log(err)
+  })
+})
+
+
 
 // need to re-do so that 'user_id' does not have to be entered
 // use new route

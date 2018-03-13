@@ -130,7 +130,7 @@ export default class NodeMaker extends Component {
                     {console.log(nodeInfo.node_name)}
 
                     {/* Event/Node Cards */}
-                    <div className="card text-white bg-danger mb-3 col-sm-3">
+                    <div className="card text-white  mb-3 col-sm-3">
                         <div className="card-header">{nodeInfo.node_name}</div>
                         <div className="card-body">
                             <h5 className="card-title">{nodeInfo.location_id}</h5>
@@ -142,7 +142,7 @@ export default class NodeMaker extends Component {
                             {/* <!-- Button trigger modal --> */}
 
                             <div className="container-fluid d-flex justify-content-center">
-                                <button type="button" className="btn btn-light btn-sm" data-toggle="modal" data-target="#firstEvent" onClick={() => { this.pizza(nodeInfo.id) }}>
+                                <button type="button" className="btn btn-sm" data-toggle="modal" data-target="#firstEvent" onClick={() => { this.pizza(nodeInfo.id) }}>
                                     View Event
                                 </button>
                                 {/* <button type="button" className="btn btn-light btn-sm">
@@ -192,8 +192,8 @@ export default class NodeMaker extends Component {
 
                                     </div>
                                     <div className="modal-footer d-flex align-items-center">
-                                        <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
-                                        <button type="button" className="btn btn-light">Edit Event</button>
+                                        <button type="button" className="btn" data-dismiss="modal">Close</button>
+                                        <button type="button" className="btn">Edit Event</button>
                                     </div>
                                 </div>
                             </div>
