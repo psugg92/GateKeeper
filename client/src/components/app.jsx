@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import Header from './Header';
 import Main from './Main';
+import Login from './auth/login';
+import Logout from './auth/logout';
 import SignUp from './SignUp';
 import UserDashboard from './UserDashboard';
 import CreateCampaign from './CreateCampaign';
@@ -14,7 +16,7 @@ import CreateEvent2 from './CreateEvent2';
 // import Donate from './donate';
 // import PrivateRoute from './auth/privateRoute';
 // import Login from './auth/login';
-// import Logout from './auth/logout';
+// 
 // import AuthButton from './auth/authButton';
 
 
@@ -27,10 +29,12 @@ export default class App extends Component {
         return (
             <Router>
                 <Fragment>
-                    <Header />
-                    <Link to=""></Link>
+                
+                    {/* <Link to=""></Link> */}
                     <Switch>
                         <Route exact path='/' component={Main} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/logout" component={Logout} />
                         <Route exact path='/SignUp' component={SignUp} />
                         <Route exact path='/UserDashboard' component={UserDashboard} />
                         <Route exact path='/CreateCampaign' component={CreateCampaign} />
@@ -47,7 +51,7 @@ export default class App extends Component {
         )
     }
 }
-{/* <AuthButton /> */}
+{/* <AuthButton />  */}
 {/* <Route path="/login" component={Login} />
     <Route path="/logout" component={Logout} />
     <Route path="/donate" component={Donate} /> */}

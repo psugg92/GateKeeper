@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import AuthButton from './auth/authButton';
 
 export default class Header extends Component {
     constructor(props) {
@@ -19,7 +20,15 @@ export default class Header extends Component {
                         {/* <h1 className="display-3 ml-1 mb-1 mt-2">Gatekeeper</h1> */}
                     {/* </Link> */}
                     <div className="dropleft ml-auto d-flex align-items-center">
-                        <button className="btn dropdown-toggle mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <AuthButton />
+                    </div>
+                </div>
+            </Fragment>
+        )
+    }
+}
+
+{/* <button className="btn dropdown-toggle mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Sign In
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -36,10 +45,4 @@ export default class Header extends Component {
                             </form>
                             <div className="dropdown-divider"></div>
                             <p className="dropdown-item" href="#">New around here? <Link to='/SignUp'>Sign up</Link></p>
-                        </div>
-                    </div>
-                </div>
-            </Fragment>
-        )
-    }
-}
+                        </div> */}

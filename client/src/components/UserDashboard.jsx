@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import * as campaignsService from '../services/campaigns';
 
+import Header from "./Header"
 import CampaignMaker from "./CampaignMaker";
 
 export default class UserDashboard extends Component {
@@ -23,6 +24,7 @@ export default class UserDashboard extends Component {
     render() {
         return (
             <Fragment>
+                <Header />
                 <div className="jumbotron jumbotron-fluid">
                     <div className="container d-flex justify-content-center align-items-center">
                         <img src='../pics/sham.png' className='rounded-circle m-1' />
