@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import AuthButton from "./auth/authButton";
 
 
 export default class SignUp extends Component {
@@ -10,6 +11,20 @@ export default class SignUp extends Component {
     render() {
         return (
             <Fragment>
+                <div className="d-flex justify-content-start align-items-center" id="top">
+                    <Link to='/'>
+                    <span id="edit-img">
+                        <img src="../pics/logo_white.png" className='ml-3 mt-3 mr-1' />
+                    </span>
+                    </Link>
+                    {/* <Link to='/' style={{ textDecoration: 'none' }}> */}
+                        {/* <h1 className="display-3 ml-1 mb-1 mt-2">Gatekeeper</h1> */}
+                    {/* </Link> */}
+
+                    <div className="dropleft ml-auto d-flex align-items-center">
+                        <AuthButton />
+                    </div>
+                </div>
                 <div className="jumbotron jumbotron-fluid">
                     <div className='container-fluid d-flex justify-content-center' >
                         <h2 className="display-6 border-bottom border-light">Create an Account</h2>

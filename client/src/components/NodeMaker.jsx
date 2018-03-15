@@ -24,7 +24,7 @@ export default class NodeMaker extends Component {
         let npcMap = this.state.node.map((hotdog, index) => {
             if (hotdog.npc_name !== null) {
                 return (
-                    <div className="card text-danger bg-white mb-3 col-md-6" key={index}>
+                    <div className="card bank-text bg-white mb-3 col-md-6" key={index}>
                         <div className="card-header">
                             <h2>{hotdog.npc_name}</h2>
                             <p className="card-text m-0"><i>Size: {hotdog.npc_size} | Alignment: {hotdog.npc_alignment}</i></p>
@@ -81,7 +81,7 @@ export default class NodeMaker extends Component {
         let trapMap = this.state.node.map((burger, index) => {
             if (burger.trap_name !== null) {
                 return (
-                    <div className="card text-danger bg-white mb-3 col-md-4" key={index}>
+                    <div className="card bank-text bg-white mb-3 col-md-4" key={index}>
                         <div className="card-header">
                             <h5>{burger.trap_name}</h5>
                         </div>
@@ -104,7 +104,7 @@ export default class NodeMaker extends Component {
         let treasureMap = this.state.node.map((taco, index) => {
             if (taco.loot_name !== null) {
                 return (
-                    <div className="card text-danger bg-white mb-3 col-md-4" key={index}>
+                    <div className="card bank-text bg-white mb-3 col-md-4" key={index}>
                         <div className="card-header">
                             <h5>{taco.loot_name}</h5>
                         </div>
@@ -130,7 +130,7 @@ export default class NodeMaker extends Component {
                     {console.log(nodeInfo.node_name)}
 
                     {/* Event/Node Cards */}
-                    <div className="card text-white  mb-3 col-sm-3">
+                    <div className="card text-white  mb-5 col-md-3">
                         <div className="card-header">{nodeInfo.node_name}</div>
                         <div className="card-body">
                             <h5 className="card-title">{nodeInfo.location_id}</h5>
@@ -154,7 +154,7 @@ export default class NodeMaker extends Component {
                             {/* <!-- Modal --> */}
                             <div className="modal fade" id="firstEvent" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div className="modal-dialog modal-xl" id="phat" role="document">
-                                    <div className="modal-content bg-danger text-light">
+                                    <div className="modal-content dropdownCard text-light">
                                         <div className="modal-header">
                                             <h1 className="modal-title" id="exampleModalLongTitle">{this.state.node[0].node_name}</h1>
                                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -200,12 +200,13 @@ export default class NodeMaker extends Component {
 
                         </div>
                     </div>
-
-
+                    <div className="col-md-1 d-flex align-items-center mb-5">
+                        <img src="../../pics/arrow.png" />
+                    </div>
                 </Fragment>
             )
 
         })
-        return <div className="row">{nodeCollection}</div>;
+        return <div className=" d-flex justify-content-between">{nodeCollection}</div>;
     }
 }

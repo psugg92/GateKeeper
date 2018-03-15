@@ -10,7 +10,7 @@ export default class Header extends Component {
     render() {
         return (
             <Fragment>
-                <div className="d-flex justify-content-start align-items-center" id="top">
+                <div className="d-flex justify-content-start align-items-center position-relative" id="top">
                     <Link to='/'>
                     <span id="edit-img">
                         <img src="../pics/logo_white.png" className='ml-3 mt-3 mr-1' />

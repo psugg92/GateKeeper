@@ -27,35 +27,41 @@ export default class Main extends Component {
                 </div>
                 <div className="jumbotron jumbotron-fluid d-flex">
                     <div className="container">
-                        <h1 className="display-3">Welcome to Gatekeeper!</h1>
-                        <p className="lead">This is a good ass application. Sign up if you ain't a bitch</p>
+                        <h1 className="display-3">Welcome to Dungeon Keeper!</h1>
+                        <p className="lead"></p>
                         <Link to='/SignUp' className="btn btn-lg text-light">
                             SIGN UP
                         </Link>
                     </div>
                     <div className="container">
-                        <img src="../pics/cigLg.jpg" />
+                        <img src="../pics/logo_white_lg.png" />
                     </div>
                 </div>
-                <div className="container-fluid d-flex justify-content-around">
-                    <div className="card col-md-3 d-flex p-4">
-                        <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
+                <div className="container-fluid d-flex justify-content-around my-5">
+                    <div className="card col-md-4 d-flex p-2">
+                        <img className="card-img-top" src="../pics/peter.jpg" alt="Card image cap" />
                         <div className="card-body">
-                            <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h2>Peter Sugg</h2>
+                            <h4>Back End</h4>
                         </div>
                     </div>
-                    <div className="card col-md-3 d-flex p-4">
-                        <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
+                    <div className="card col-md-4 d-flex p-2 mr-2 ml-2">
+                        <img className="card-img-top" src="../pics/jason.jpg" alt="Card image cap" />
                         <div className="card-body">
-                            <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h2>Jason Simons</h2>
+                            <h4>Front End</h4>
                         </div>
                     </div>
-                    <div className="card col-md-3 d-flex p-4">
-                        <img className="card-img-top" src="../pics/cigSm.jpg" alt="Card image cap" />
+                    <div className="card col-md-4 d-flex p-2">
+                        <img className="card-img-top" src="../pics/matt.jpg" alt="Card image cap" />
                         <div className="card-body">
-                            <p className="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h2>Matt Bolton</h2>
+                            <h4>Front End</h4>
                         </div>
                     </div>
+                    
+
+                    
                 </div>
             </Fragment>
         );

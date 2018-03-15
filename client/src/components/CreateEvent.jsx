@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import * as campaignsService from "../services/campaigns";
 import * as nodesService from "../services/nodes";
+
+import Header from "./Header";
 import LocationMaker from "./LocationMaker";
 
 // import CreateLocation from "./CreateLocation";
@@ -109,6 +111,7 @@ export default class CreateEvent extends Component {
     render() {
         return (
             <Fragment>
+                <Header />
                 <div className="jumbotron jumbotron-fluid">
                     <div className="container p-5">
                         <div className='container-fluid d-flex ' >
@@ -183,12 +186,12 @@ export default class CreateEvent extends Component {
                     {/* <button type="button" className="btn btn-danger btn-lg m-1" onClick={ () => { this.createNode(); this.getNodeId(); }}>
                         Generate
                     </button> */}
-                    <Link to="/Storyboard/1" className="btn btn-lg text-light m-1">
+                    <Link to="/Storyboard/1" className="btn btn-lg text-light">
                         CANCEL
                     </Link>
-                    <button type="button" className="btn btn-danger btn-lg m-1" onClick={ () => {this.createNode()}}>
+                    <Link to="/CreateEvent2/1" type="button" className="btn btn-lg" onClick={ () => {this.createNode()}}>
                         NEXT
-                    </button>
+                    </Link>
                 </div>
                 </div>
             </Fragment>

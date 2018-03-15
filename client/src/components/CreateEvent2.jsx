@@ -6,6 +6,7 @@ import * as trapsService from "../services/traps";
 import * as treasuresService from "../services/treasures";
 import * as nodeRefService from '../services/noderef';
 
+import Header from "./Header";
 import NpcMaker from "./NpcMaker";
 import TrapMaker from "./TrapMaker";
 import TreasureMaker from "./TreasureMaker";
@@ -424,6 +425,7 @@ export default class CreateEvent2 extends Component {
   render() {
     return (
       <Fragment>
+        <Header />
         <div className="jumbotron jumbotron-fluid">
           <div className="container d-flex justify-content-center p-3">
             <h1 className="display-6">

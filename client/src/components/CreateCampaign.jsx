@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import * as campaignsService from "../services/campaigns";
 
+import Header from "./Header";
+
 
 export default class CreateCampaign extends Component {
     constructor(props) {
@@ -34,6 +36,7 @@ export default class CreateCampaign extends Component {
     render() {
         return (
             <Fragment>
+                <Header />
                 <div className="jumbotron jumbotron-fluid">
                     <div className='container-fluid d-flex justify-content-center' >
                         <h2 className="display-6 border-bottom border-light">Create a New Campaign</h2>
@@ -52,7 +55,7 @@ export default class CreateCampaign extends Component {
                                 id="exampleFormControlTextarea1"
                                 rows="5"
                             />
-                            <div className="container-fluid d-flex justify-content-center">
+                            <div className="container-fluid d-flex justify-content-center m-1">
                                 <Link to='/UserDashboard' onClick={() => { this.createCampaign() }} className="btn text-light btn-lg">
                                     CREATE CAMPAIGN
                             </Link>

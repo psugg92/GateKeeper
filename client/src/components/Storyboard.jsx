@@ -2,8 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import * as nodesService from '../services/nodes';
 
+import Header from "./Header";
 import NodeMaker from './NodeMaker';
 import CreateEvent from './CreateEvent';
+import AuthButton from './auth/authButton';
 
 export default class Storyboard extends Component {
     constructor(props) {
@@ -24,21 +26,22 @@ export default class Storyboard extends Component {
     render() {
         return (
             <Fragment>
+                <Header />
                 <div className="jumbotron jumbotron-fluid">
-                    <div className='container-fluid d-flex justify-content-center'>
-                        <h2 className="display-6">Storyboard</h2>
+                    <div className='container-fluid d-flex justify-content-center mb-4'>
+                        <h1 className="display-6">Storyboard</h1>
                     </div>
-                    <div className='container-fluid d-flex justify-content-center m-3'>
-                        <Link to={`/CreateEvent/${this.props.match.params.id}`} className="btn btn-lg text-light m-1">
+                    <div className='container-fluid d-flex justify-content-center '>
+                        <Link to={`/CreateEvent/${this.props.match.params.id}`} className="btn btn-lg text-light">
                             Create Event
-                    </Link>
-                        {/* <!-- Button trigger for Delete Campaign modal --> */}
-                        <button type="button" className="btn m-1" data-toggle="modal" data-target="#delete-campaign">
+                        </Link>
+                        {/* <!-- Button trigger for Delete Campaign modal -->
+                        <button type="button" className="btn" data-toggle="modal" data-target="#delete-campaign">
                             Delete Campaign
-                    </button>
+                        </button>
 
                         {/* <!-- Delete Campaign Modal --> */}
-                        <div className="modal fade" id="delete-campaign" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        {/* <div className="modal fade" id="delete-campaign" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div className="modal-dialog" role="document">
                                 <div className="modal-content bg-danger text-light">
                                     <div className="modal-header">
@@ -59,13 +62,18 @@ export default class Storyboard extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <Link to="../UserDashboard" className="btn btn-lg text-light m-1">
+                        </div> */}
+                        {/* <Link to="" className="btn btn-lg text-light">
                             Delete Campaign
-                    </Link>
+                    </Link> */}
                     </div>
                 </div>
-                <div className='container d-flex justify-content-between'>
+                <div className="container d-flex justify-content-around mb-3">
+                    <div className="alert alert-light text-left" role="alert">
+                        Use this page to create, view, and manage your events.
+                    </div>
+                </div>
+                <div className='container-fluid scroll'>
                     <NodeMaker nodeList={this.state.nodeArray} />
                 </div>
             </Fragment>

@@ -126,3 +126,7 @@ body {
 #edit-img:hover img {
   -webkit-filter: invert(100%);
 }
+
+.scroll {
+  overflow: auto;
+}
