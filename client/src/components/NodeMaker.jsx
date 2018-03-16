@@ -24,7 +24,7 @@ export default class NodeMaker extends Component {
         let npcMap = this.state.node.map((hotdog, index) => {
             if (hotdog.npc_name !== null) {
                 return (
-                    <div className="card bank-text bg-white mb-3 col-md-6" key={index}>
+                    <div className="card bank-text bg-white mb-3 mx-3 col-md-6" key={index}>
                         <div className="card-header">
                             <h2>{hotdog.npc_name}</h2>
                             <p className="card-text m-0"><i>Size: {hotdog.npc_size} | Alignment: {hotdog.npc_alignment}</i></p>
@@ -74,14 +74,14 @@ export default class NodeMaker extends Component {
                 )
             }
         })
-        return <div className="row">{npcMap}</div>;
+        return <div className="d-flex justify-content-start">{npcMap}</div>;
     }
 
     trapCardMap() {
         let trapMap = this.state.node.map((burger, index) => {
             if (burger.trap_name !== null) {
                 return (
-                    <div className="card bank-text bg-white mb-3 col-md-4" key={index}>
+                    <div className="card bank-text bg-white mb-3 mx-3 col-md-4" key={index}>
                         <div className="card-header">
                             <h5>{burger.trap_name}</h5>
                         </div>
@@ -97,14 +97,14 @@ export default class NodeMaker extends Component {
                 )
             }
         })
-        return <div className="row justify-content-around">{trapMap}</div>;
+        return <div className="d-flex justify-content-start">{trapMap}</div>;
     }
 
     treasureCardMap() {
         let treasureMap = this.state.node.map((taco, index) => {
             if (taco.loot_name !== null) {
                 return (
-                    <div className="card bank-text bg-white mb-3 col-md-4" key={index}>
+                    <div className="card bank-text bg-white mb-3 mx-3 col-md-4" key={index}>
                         <div className="card-header">
                             <h5>{taco.loot_name}</h5>
                         </div>
@@ -118,7 +118,7 @@ export default class NodeMaker extends Component {
                 )
             }
         })
-        return <div className="row justify-content-around">{treasureMap}</div>;
+        return <div className="d-flex justify-content-start">{treasureMap}</div>;
     }
 
     render() {
@@ -133,7 +133,6 @@ export default class NodeMaker extends Component {
                     <div className="card text-white  mb-5 col-md-3">
                         <div className="card-header">{nodeInfo.node_name}</div>
                         <div className="card-body">
-                            <h5 className="card-title">{nodeInfo.location_id}</h5>
                             <p className="card-text">{nodeInfo.node_description}</p>
 
 
@@ -163,7 +162,7 @@ export default class NodeMaker extends Component {
                                         </div>
                                         <div className="modal-body text-left">
                                             <h3>Description:</h3>
-                                            <p>{this.state.node[0].node_description} Peter, Eat shit</p>
+                                            <p>{this.state.node[0].node_description}</p>
                                             <h3>Location:</h3>
                                             <p>{this.state.node[0].location_name} - {this.state.node[0].location_description}</p>
 
@@ -172,28 +171,27 @@ export default class NodeMaker extends Component {
 
                                             {/* let nodeCollection = this.props.nodeList.map(nodeInfo => { */}
                                             {/* NPC Cards */}
-                                            <div className="container-fluid">
+                                            <div className="container-fluid scroll">
                                                 {this.npcCardMap()}
                                             </div>
 
                                             <h3>Traps:</h3>
 
-                                            <div className="container-fluid">
+                                            <div className="container-fluid scroll">
                                                 {this.trapCardMap()}
                                             </div>
 
                                             <h3>Treasures:</h3>
 
-                                            <div className="container-fluid">
+                                            <div className="container-fluid scroll">
                                                 {this.treasureCardMap()}
                                             </div>
 
                                         </div>
 
                                     </div>
-                                    <div className="modal-footer d-flex align-items-center">
+                                    <div className="modal-footer aqua d-flex align-items-center">
                                         <button type="button" className="btn" data-dismiss="modal">Close</button>
-                                        <button type="button" className="btn">Edit Event</button>
                                     </div>
                                 </div>
                             </div>

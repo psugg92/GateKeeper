@@ -117,20 +117,7 @@ export default class CreateEvent extends Component {
                         <div className='container-fluid d-flex ' >
                             <h2 className="display-6 border-bottom border-light">Create a New Event</h2>
                         </div>
-                        <div className="d-flex flex-column">
-                            <div className="p-2 text-left">Name of Event:</div>
-                            <textarea onChange={(event) => { this.updateEventName(event.target.value) }}
-                                className="form-control p-1 m-2"
-                                id="exampleFormControlTextarea1"
-                                rows="1"
-                            />
-                            <div className="p-2 text-left">Short Description:</div>
-                            <textarea onChange={(event) => { this.updateEventDescription(event.target.value) }}
-                                className="form-control p-1 m-2"
-                                id="exampleFormControlTextarea1"
-                                rows="3"
-                            />
-                            <div className="p-2 text-left">Location</div>
+                        <div className="p-2 text-left">Location</div>
                             <select className="form-control p-1 m-2" id="event-select-locations-input" onChange={(event) => { this.updateEventLocation(event.target.value) }}>
                                 {this.state.locationArray.map((location, index) => {
                                     return <LocationMaker location={location} key={index} />
@@ -144,10 +131,10 @@ export default class CreateEvent extends Component {
                                 CREATE LOCATION
                             </button>
                             <div className="collapse" id="create-location">
-                                <div className="card card-body bg-danger">
+                                <div className="card card-body dropdownCard">
 
                                     <div className="form-group row">
-                                        <label className="col-2 col-form-label text-light">Name</label>
+                                        <label className="col-2 col-form-label text-light text-right">Name</label>
                                         <div className="col-10">
                                             <input className="form-control" type="text" id="location-name-input" onChange={(event) => { this.updateLocationName(event.target.value) }} />
                                         </div>
@@ -161,23 +148,36 @@ export default class CreateEvent extends Component {
                                     </div>
 
                                     <div className="form-group row">
-                                        <label className="col-2 col-form-label text-light">Lore</label>
+                                        <label className="col-2 col-form-label text-light text-right">Lore</label>
                                         <div className="col-10">
                                             <input className="form-control" type="text" id="location-lore-input" onChange={(event) => { this.updateLocationLore(event.target.value) }} />
                                         </div>
                                     </div>
-                                    eat a dick lol
                                     <div className="form-group row">
-                                        <button className="btn text-light" type="button" data-toggle="collapse" data-target="#create-location" aria-expanded="false" aria-controls="collapseExample">
+                                        <button className="btn text-light aqua ml-3 mr-1" type="button" data-toggle="collapse" data-target="#create-location" aria-expanded="false" aria-controls="collapseExample">
                                             Cancel
-                                    </button>
-                                        <button className="btn text-light col-1" type="button" onClick={() => { this.createLocation(); location.reload(); }}>
+                                        </button>
+                                        <button className="btn text-light aqua" type="button" onClick={() => { this.createLocation(); location.reload(); }}>
                                             Create
-                                    </button>
+                                        </button>
                                     </div>
 
                                 </div>
                             </div>
+                        <div className="d-flex flex-column">
+                            <div className="p-2 text-left">Name of Event:</div>
+                            <textarea onChange={(event) => { this.updateEventName(event.target.value) }}
+                                className="form-control p-1 m-2"
+                                id="exampleFormControlTextarea1"
+                                rows="1"
+                            />
+                            <div className="p-2 text-left">Short Description:</div>
+                            <textarea onChange={(event) => { this.updateEventDescription(event.target.value) }}
+                                className="form-control p-1 m-2"
+                                id="exampleFormControlTextarea1"
+                                rows="3"
+                            />
+                            
                         </div>
                     </div>
                 

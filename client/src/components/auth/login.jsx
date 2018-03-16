@@ -74,13 +74,13 @@ class Login extends Component {
                 <div className="jumbotron jumbotron-fluid">
                 <div className="container">
                 <p>You must be logged in to view this page.</p>
-                <form onSubmit={(e) => this.login(e)} className="dropdownCard">
+                <form onSubmit={(e) => this.login(e)} className="bg-light">
                     <div className="form-group">
-                        <label htmlFor="email" className="text-light">Email</label>
+                        <label htmlFor="email" className="aqua-text">Email</label>
                         <input id="email" className="form-control" type="email" onChange={(e) => this.handleEmailChange(e.target.value)} required /> 
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password" className="text-light">Password</label>
+                        <label htmlFor="password" className="aqua-text">Password</label>
                         <input id="password" className="form-control" type="password" onChange={(e) => this.handlePasswordChange(e.target.value)} required /> 
                     </div>
                     {this.state.feedbackMessage ? (

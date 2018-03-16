@@ -13,19 +13,19 @@ export default class Main extends Component {
             <Fragment>
                 <div className="d-flex justify-content-start align-items-center" id="top">
                     <Link to='/'>
-                    <span id="edit-img">
-                        <img src="../pics/logo_white.png" className='ml-3 mt-3 mr-1' />
-                    </span>
+                        <span id="edit-img">
+                            <img src="../pics/logo_white.png" className='ml-3 mt-3 mr-1' />
+                        </span>
                     </Link>
                     {/* <Link to='/' style={{ textDecoration: 'none' }}> */}
-                        {/* <h1 className="display-3 ml-1 mb-1 mt-2">Gatekeeper</h1> */}
+                    {/* <h1 className="display-3 ml-1 mb-1 mt-2">Gatekeeper</h1> */}
                     {/* </Link> */}
 
                     <div className="dropleft ml-auto d-flex align-items-center">
                         <AuthButton />
                     </div>
                 </div>
-                <div className="jumbotron jumbotron-fluid d-flex">
+                <div className="jumbotron jumbotron-fluid d-flex ">
                     <div className="container">
                         <h1 className="display-3">Welcome to Dungeon Keeper!</h1>
                         <p className="lead"></p>
@@ -34,7 +34,20 @@ export default class Main extends Component {
                         </Link>
                     </div>
                     <div className="container">
-                        <img src="../pics/logo_white_lg.png" />
+                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="../pics/dudes.jpg" alt="First slide" />
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="../pics/tom.png" alt="Second slide" />
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="../pics/skeleton.jpg" alt="Third slide" />
+                                </div>
+                            </div>
+                        </div>
+                        {/* <img src="../pics/logo_white_lg.png" /> */}
                     </div>
                 </div>
                 <div className="container-fluid d-flex justify-content-around my-5">
@@ -42,26 +55,23 @@ export default class Main extends Component {
                         <img className="card-img-top" src="../pics/peter.jpg" alt="Card image cap" />
                         <div className="card-body">
                             <h2>Peter Sugg</h2>
-                            <h4>Back End</h4>
                         </div>
                     </div>
                     <div className="card col-md-4 d-flex p-2 mr-2 ml-2">
                         <img className="card-img-top" src="../pics/jason.jpg" alt="Card image cap" />
                         <div className="card-body">
                             <h2>Jason Simons</h2>
-                            <h4>Front End</h4>
                         </div>
                     </div>
                     <div className="card col-md-4 d-flex p-2">
                         <img className="card-img-top" src="../pics/matt.jpg" alt="Card image cap" />
                         <div className="card-body">
                             <h2>Matt Bolton</h2>
-                            <h4>Front End</h4>
                         </div>
                     </div>
-                    
 
-                    
+
+
                 </div>
             </Fragment>
         );

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import * as nodesService from '../services/nodes';
+import * as campaignsService from '../services/campaigns';
 
 import Header from "./Header";
 import NodeMaker from './NodeMaker';
@@ -12,7 +13,8 @@ export default class Storyboard extends Component {
         super(props);
 
         this.state = {
-            nodeArray: []
+            nodeArray: [],
+            description: ''
         };
     };
 
@@ -21,6 +23,14 @@ export default class Storyboard extends Component {
             .then(data => {
                 this.setState({ nodeArray: data })
             })
+        
+
+        campaignsService.one(`${this.props.match.params.id}`)
+            .then(data => {
+                this.setState({ description: data[0].campaign_description })
+                console.log(this.state.description);
+            })
+        
     };
 
     render() {
@@ -28,8 +38,11 @@ export default class Storyboard extends Component {
             <Fragment>
                 <Header />
                 <div className="jumbotron jumbotron-fluid">
-                    <div className='container-fluid d-flex justify-content-center mb-4'>
-                        <h1 className="display-6">Storyboard</h1>
+                    <div className='container-fluid d-flex justify-content-center mb-1'>
+                        <p className="m-0 font-weight-light font-italic">"{this.state.description}"</p>
+                    </div>
+                    <div className='container-fluid d-flex justify-content-center mb-1'>
+                        <h2 className="display-6">Storyboard</h2>
                     </div>
                     <div className='container-fluid d-flex justify-content-center '>
                         <Link to={`/CreateEvent/${this.props.match.params.id}`} className="btn btn-lg text-light">
@@ -69,8 +82,8 @@ export default class Storyboard extends Component {
                     </div>
                 </div>
                 <div className="container d-flex justify-content-around mb-3">
-                    <div className="alert alert-light text-left" role="alert">
-                        Use this page to create, view, and manage your events.
+                    <div className="alert alert-light" role="alert">
+                        Use this page to manage the events in your campaign. Click on one of the "View Event" buttons below to review the details for a specific event. Click on the "Create Event" button above to create a new event for your campaign.
                     </div>
                 </div>
                 <div className='container-fluid scroll'>

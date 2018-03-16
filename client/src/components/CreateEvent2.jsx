@@ -442,14 +442,18 @@ export default class CreateEvent2 extends Component {
             <div className="container col-md-9 text-left">
               <h2>NPCs</h2>
 
+{/* <button className="btn text-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      NPCs
+                    </button> */}
+
               {/* Create NPC */}
               <button
                 className="btn mb-2"
                 type="button"
                 data-toggle="collapse"
                 data-target="#create-npc"
-                aria-expanded="false"
-                aria-controls="collapseExample"
+                aria-expanded="true"
+                aria-controls="create-npc"
               >
                 CREATE NPC
           </button>
@@ -941,7 +945,7 @@ export default class CreateEvent2 extends Component {
                   </div>
                   <div className="form-group row py-1">
                     <button
-                      className="btn"
+                      className="btn aqua ml-3 mr-1"
                       type="button"
                       data-toggle="collapse"
                       data-target="#create-npc"
@@ -952,9 +956,10 @@ export default class CreateEvent2 extends Component {
                 </button>
                     <button
                       type="button"
-                      className="btn text-right col-1"
+                      className="btn text-right aqua"
                       onClick={() => {
                         this.postNpc();
+                        location.reload();
                       }}
                     >
                       Create
@@ -1076,7 +1081,7 @@ export default class CreateEvent2 extends Component {
 
                   <div className="form-group row py-1">
                     <button
-                      className="btn"
+                      className="btn aqua ml-3 mr-1"
                       type="button"
                       data-toggle="collapse"
                       data-target="#create-trap"
@@ -1084,16 +1089,17 @@ export default class CreateEvent2 extends Component {
                       aria-controls="collapseExample"
                     >
                       Cancel
-                </button>
+                    </button>
                     <button
                       type="button"
-                      className="btn text-right col-1"
+                      className="btn text-right aqua"
                       onClick={() => {
                         this.postTrap();
+                        location.reload();
                       }}
                     >
                       Create
-                </button>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1164,7 +1170,7 @@ export default class CreateEvent2 extends Component {
 
                   <div className="form-group row py-1">
                     <button
-                      className="btn"
+                      className="btn aqua ml-3 mr-1"
                       type="button"
                       data-toggle="collapse"
                       data-target="#create-treasure"
@@ -1176,9 +1182,10 @@ export default class CreateEvent2 extends Component {
                     <button
                       type="button"
                       to="/CreateEvent2"
-                      className="btn text-right col-1"
+                      className="btn text-right aqua"
                       onClick={() => {
                         this.postTreasure();
+                        location.reload();
                       }}
                     >
                       Create
@@ -1255,11 +1262,11 @@ export default class CreateEvent2 extends Component {
           </div>
 
 
-          <button className="btn btn-lg text-white" onClick={() => {
+          <Link to="/Storyboard/1" className="btn btn-lg text-white" onClick={() => {
             this.handleSubmit()
           }}>
             FINISH
-       </button>
+       </Link>
         </div>
       </Fragment>
     );

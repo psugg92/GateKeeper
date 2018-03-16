@@ -28,8 +28,8 @@ export default class CreateCampaign extends Component {
 
     createCampaign() {
         campaignsService.insert({
-            campaign_name: this.state.campaignName,
-            campaign_description: this.state.campaignDescription
+            campaignName: this.state.campaignName,
+            campaignDescription: this.state.campaignDescription
         })
     }
 
