@@ -31,7 +31,8 @@ function configurePassport(app) {
                     })
                     .then(idObj => encode(idObj.id))
                     .then(token => {
-                      return done(null, { token });
+                      delete user.password;
+                      return done(null, { token, user });
                     });
                 } else {
                   //get that shit outta here fam

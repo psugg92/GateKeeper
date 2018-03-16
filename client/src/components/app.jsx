@@ -35,8 +35,8 @@ export default class App extends Component {
                         <Route path="/login" component={Login} />
                         <Route path="/logout" component={Logout} />
                         <Route exact path='/SignUp' component={SignUp} />
-                        <PrivateRoute exact path='/UserDashboard' component={UserDashboard} />
-                        <PrivateRoute exact path='/CreateCampaign' component={CreateCampaign} />
+                        <PrivateRoute exact path='/UserDashboard/:id' component={UserDashboard} />
+                        <PrivateRoute exact path='/CreateCampaign/:id' component={CreateCampaign} />
                         <PrivateRoute exact path='/Storyboard/:id' component={Storyboard} />
                         <PrivateRoute exact path='/CreateEvent/:id' component={CreateEvent} />
                         <PrivateRoute exact path='/CreateEvent2/:id' component={CreateEvent2} />

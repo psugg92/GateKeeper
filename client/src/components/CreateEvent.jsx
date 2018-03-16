@@ -77,7 +77,7 @@ export default class CreateEvent extends Component {
     //hardcoded user
     //remember to change
     createNode() {
-        fetch('http://localhost:3000/api/campaigns/nodes/1', {
+        fetch(`http://localhost:3000/api/campaigns/nodes/${this.props.match.params.id}`, {
 			method: 'post',
 			body: JSON.stringify({
 			    eventName: this.state.eventName,
@@ -90,6 +90,7 @@ export default class CreateEvent extends Component {
 			})
         }).then(res => res.json())
             .then(results => {
+                console.log(results)
                 // this.setState({ nodeId: results.insertId });
                 this.setState({nodeId: results[0][0].insertId}, () => {this.props.history.replace("/CreateEvent2/" + this.state.nodeId)});
             })
@@ -102,7 +103,7 @@ export default class CreateEvent extends Component {
         campaignsService.allLocations(`${this.props.match.params.id}`)
             .then(data => {
                 this.setState({ locationArray: data })
-                console.log(this.state.locationArray);
+                // console.log(this.state.locationArray);
             })
     };
 
@@ -131,10 +132,10 @@ export default class CreateEvent extends Component {
                                 CREATE LOCATION
                             </button>
                             <div className="collapse" id="create-location">
-                                <div className="card card-body dropdownCard">
+                                <div className="card card-body bg-danger">
 
                                     <div className="form-group row">
-                                        <label className="col-2 col-form-label text-light text-right">Name</label>
+                                        <label className="col-2 col-form-label text-light">Name</label>
                                         <div className="col-10">
                                             <input className="form-control" type="text" id="location-name-input" onChange={(event) => { this.updateLocationName(event.target.value) }} />
                                         </div>
@@ -148,36 +149,25 @@ export default class CreateEvent extends Component {
                                     </div>
 
                                     <div className="form-group row">
-                                        <label className="col-2 col-form-label text-light text-right">Lore</label>
+                                        <label className="col-2 col-form-label text-light">Lore</label>
                                         <div className="col-10">
                                             <input className="form-control" type="text" id="location-lore-input" onChange={(event) => { this.updateLocationLore(event.target.value) }} />
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <button className="btn text-light aqua ml-3 mr-1" type="button" data-toggle="collapse" data-target="#create-location" aria-expanded="false" aria-controls="collapseExample">
+                                        <button className="btn text-light" type="button" data-toggle="collapse" data-target="#create-location" aria-expanded="false" aria-controls="collapseExample">
                                             Cancel
-                                        </button>
-                                        <button className="btn text-light aqua" type="button" onClick={() => { this.createLocation(); location.reload(); }}>
+                                    </button>
+                                        <button className="btn text-light col-1" type="button" onClick={() => { this.createLocation() }}>
                                             Create
-                                        </button>
+                                    </button>
+                                    <button className="btn text-light col-1" type="button" onClick={() => {this.saveLocation()}}>
+                                        Save
+                                    </button>
                                     </div>
 
                                 </div>
                             </div>
-                        <div className="d-flex flex-column">
-                            <div className="p-2 text-left">Name of Event:</div>
-                            <textarea onChange={(event) => { this.updateEventName(event.target.value) }}
-                                className="form-control p-1 m-2"
-                                id="exampleFormControlTextarea1"
-                                rows="1"
-                            />
-                            <div className="p-2 text-left">Short Description:</div>
-                            <textarea onChange={(event) => { this.updateEventDescription(event.target.value) }}
-                                className="form-control p-1 m-2"
-                                id="exampleFormControlTextarea1"
-                                rows="3"
-                            />
-                            
                         </div>
                     </div>
                 
@@ -186,13 +176,12 @@ export default class CreateEvent extends Component {
                     {/* <button type="button" className="btn btn-danger btn-lg m-1" onClick={ () => { this.createNode(); this.getNodeId(); }}>
                         Generate
                     </button> */}
-                    <Link to="/Storyboard/1" className="btn btn-lg text-light">
+                    <Link to={`/Storyboard/${this.props.match.params.id}`} className="btn btn-lg text-light">
                         CANCEL
                     </Link>
-                    <Link to="/CreateEvent2/1" type="button" className="btn btn-lg" onClick={ () => {this.createNode()}}>
+                    <Link to={`/CreateEvent2/${this.state.nodeId}`} type="button" className="btn btn-lg" onClick={ () => {this.createNode()}}>
                         NEXT
                     </Link>
-                </div>
                 </div>
             </Fragment>
             // to={`/CreateEvent2/${this.props.match.params.id}`}

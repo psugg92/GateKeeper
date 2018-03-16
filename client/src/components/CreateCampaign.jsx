@@ -12,6 +12,7 @@ export default class CreateCampaign extends Component {
         this.state = {
             campaignName: "",
             campaignDescription: "",
+            userid: this.props.match.params.id
 
         }
     }
@@ -29,7 +30,8 @@ export default class CreateCampaign extends Component {
     createCampaign() {
         campaignsService.insert({
             campaignName: this.state.campaignName,
-            campaignDescription: this.state.campaignDescription
+            campaignDescription: this.state.campaignDescription,
+            userid: this.state.userid
         })
     }
 
@@ -56,10 +58,10 @@ export default class CreateCampaign extends Component {
                                 rows="5"
                             />
                             <div className="container-fluid d-flex justify-content-center m-1">
-                                <Link to='/UserDashboard' onClick={() => { this.createCampaign() }} className="btn text-light btn-lg">
+                                <Link to={`/UserDashboard/${this.state.userid}`} onClick={() => { this.createCampaign() }} className="btn text-light btn-lg">
                                     CREATE CAMPAIGN
                             </Link>
-                                <Link to='../UserDashboard' className="btn text-light btn-lg">
+                                <Link to={`/UserDashboard/${this.state.userid}`} className="btn text-light btn-lg">
                                     CANCEL
                             </Link>
                             </div>

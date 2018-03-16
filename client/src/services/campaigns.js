@@ -13,7 +13,7 @@ function one(id) {
 }
 // for users, you will add an id to inserUsers, just like in inserLocation
 function insert(data) {
-    return baseService.post('/api/campaigns/1', data);
+    return baseService.post(`/api/campaigns/${data.user_id}`, data);
 }
 
 function insertLocation(data, id) {

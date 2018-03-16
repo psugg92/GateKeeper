@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => {
 // })
 
 router.post('/:id', (req, res) => {
-    postUserCampaign(req.body.campaignName, req.body.campaignDescription, req.params.id)
+    postUserCampaign(req.body.campaign_name, req.body.campaign_description, req.params.id)
     .then((results) => (
         res.json(results)
     )).catch((err) => (

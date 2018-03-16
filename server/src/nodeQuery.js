@@ -19,6 +19,12 @@ export function getUserCampaigns(id) {
   return executeQuery(sql, [id]).then(results => results);
 }
 
+export function getSingleUser(id) {
+  let sql = `SELECT username FROM users
+            WHERE id = ${id}`
+  return executeQuery(sql, [id]).then(results => results);
+}
+
 export function postUserCampaign(name, desc, user_id) {
   let sql = `INSERT INTO campaigns (campaign_name, campaign_description, user_id)
                 VALUE (${`"${name}"`}, ${`"${desc}"`}, ${user_id})`;
