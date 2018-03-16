@@ -162,3 +162,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'JosefinSans-SemiBold';
   color: rgb(207, 207, 207)
 }
+
+card {
+  color:  rgb(48, 48, 48);
+}

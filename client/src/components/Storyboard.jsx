@@ -14,7 +14,8 @@ export default class Storyboard extends Component {
 
         this.state = {
             nodeArray: [],
-            description: ''
+            description: '',
+            name: ''
         };
     };
 
@@ -27,7 +28,9 @@ export default class Storyboard extends Component {
 
         campaignsService.one(`${this.props.match.params.id}`)
             .then(data => {
-                this.setState({ description: data[0].campaign_description })
+                this.setState({ description: data[0].campaign_description,
+                                name: data[0].campaign_name})
+                console.log(data);
                 console.log(this.state.description);
             })
         
@@ -38,6 +41,9 @@ export default class Storyboard extends Component {
             <Fragment>
                 <Header />
                 <div className="jumbotron jumbotron-fluid">
+                    <div className='container-fluid d-flex justify-content-center mb-1'>
+                        <p className="m-0 font-weight-light">{this.state.name}</p>
+                    </div>
                     <div className='container-fluid d-flex justify-content-center mb-1'>
                         <p className="m-0 font-weight-light font-italic">"{this.state.description}"</p>
                     </div>

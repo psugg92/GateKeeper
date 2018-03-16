@@ -13,6 +13,12 @@ export function getSingleNode(id) {
   return executeQuery(sql, [id]).then(results => results);
 }
 
+export function getSingleCampaign(id) {
+  let sql = `SELECT * FROM campaigns
+            WHERE id = ${id}`;
+  return executeQuery(sql, [id]).then(results => results);
+}
+
 export function getUserCampaigns(id) {
   let sql = `SELECT * FROM campaigns
                 WHERE user_id = ${id}`;

@@ -9,7 +9,7 @@ function allLocations(id) {
 }
 
 function one(id) {
-    return baseService.get(`/api/campaigns/${id}`);
+    return baseService.get(`/api/singleCampaign/${id}`);
 }
 // for users, you will add an id to inserUsers, just like in inserLocation
 function insert(data) {

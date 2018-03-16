@@ -10,28 +10,28 @@ export default class CreateCampaign extends Component {
         super(props);
 
         this.state = {
-            campaignName: "",
-            campaignDescription: "",
-            userid: this.props.match.params.id
+            campaign_name: "",
+            campaign_description: "",
+            user_id: this.props.match.params.id
 
         }
     }
 
     updateCampaignName(value) {
-        this.setState({ campaignName: value });
-        console.log({ campaignName: value });
+        this.setState({ campaign_name: value });
+        console.log({ campaign_name: value });
     }
 
     updateCampaignDescription(value) {
-        this.setState({ campaignDescription: value });
-        console.log({ campaignDescription: value });
+        this.setState({ campaign_description: value });
+        console.log({ campaign_description: value });
     }
 
     createCampaign() {
         campaignsService.insert({
-            campaignName: this.state.campaignName,
-            campaignDescription: this.state.campaignDescription,
-            userid: this.state.userid
+            campaign_name: this.state.campaign_name,
+            campaign_description: this.state.campaign_description,
+            user_id: this.state.user_id
         })
     }
 
@@ -58,10 +58,10 @@ export default class CreateCampaign extends Component {
                                 rows="5"
                             />
                             <div className="container-fluid d-flex justify-content-center m-1">
-                                <Link to={`/UserDashboard/${this.state.userid}`} onClick={() => { this.createCampaign() }} className="btn text-light btn-lg">
+                                <Link to={`/UserDashboard/${this.state.user_id}`} onClick={() => { this.createCampaign() }} className="btn text-light btn-lg">
                                     CREATE CAMPAIGN
                             </Link>
-                                <Link to={`/UserDashboard/${this.state.userid}`} className="btn text-light btn-lg">
+                                <Link to={`/UserDashboard/${this.state.user_id}`} className="btn text-light btn-lg">
                                     CANCEL
                             </Link>
                             </div>

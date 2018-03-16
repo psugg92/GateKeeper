@@ -291,6 +291,12 @@ export default class CreateEvent2 extends Component {
     this.getTreasureList();
   }
 
+  saveElements() {
+    this.getNpcList();
+    this.getTrapList();
+    this.getTreasureList();
+  }
+
   postTrap() {
     trapsService.postTrap({
       trapName: this.state.trapName,
@@ -959,11 +965,16 @@ export default class CreateEvent2 extends Component {
                       className="btn text-right aqua"
                       onClick={() => {
                         this.postNpc();
-                        location.reload();
                       }}
                     >
                       Create
                 </button>
+                <button
+                    type="button"
+                    className="btn text-right aqua"
+                    onClick={() => {
+                      this.saveElements();
+                    }}> Save </button>
                   </div>
                 </div>
               </div>

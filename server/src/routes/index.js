@@ -9,6 +9,7 @@ import trapRouter from './traps';
 import treasureRouter from './treasures';
 import campaignRouter from './campaigns';
 import nodeRef from './noderef'
+import singleCampaign from './singleCampaign'
 import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
@@ -20,11 +21,12 @@ router.use('/donate', stripeDonationsRouter);
 router.use(tokenMiddleware);
 router.use(isLoggedIn);
 
-// router.route('*')
-//     .post(tokenMiddleware, isLoggedIn)
-//     .put(tokenMiddleware, isLoggedIn)
-//     .delete(tokenMiddleware, isLoggedIn);
+router.route('*')
+    .post(tokenMiddleware, isLoggedIn)
+    .put(tokenMiddleware, isLoggedIn)
+    .delete(tokenMiddleware, isLoggedIn);
 
+router.use('/singleCampaign', singleCampaign);
 router.use('/traps', trapRouter);
 router.use('/users', usersRouter);
 router.use('/nodes', nodeRouter);

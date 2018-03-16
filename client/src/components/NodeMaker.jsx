@@ -24,7 +24,7 @@ export default class NodeMaker extends Component {
         let npcMap = this.state.node.map((hotdog, index) => {
             if (hotdog.npc_name !== null) {
                 return (
-                    <div className="card bank-text bg-white mb-3 mx-3 col-md-6" key={index}>
+                    <div className="card dropdownCard mb-3 mx-3 col-md-6" id="card-text" key={index}>
                         <div className="card-header">
                             <h2>{hotdog.npc_name}</h2>
                             <p className="card-text m-0"><i>Size: {hotdog.npc_size} | Alignment: {hotdog.npc_alignment}</i></p>
@@ -81,7 +81,7 @@ export default class NodeMaker extends Component {
         let trapMap = this.state.node.map((burger, index) => {
             if (burger.trap_name !== null) {
                 return (
-                    <div className="card bank-text bg-white mb-3 mx-3 col-md-4" key={index}>
+                    <div className="card dropdownCard mb-3 mx-3 col-md-4" id="card-text" key={index}>
                         <div className="card-header">
                             <h5>{burger.trap_name}</h5>
                         </div>
@@ -104,7 +104,7 @@ export default class NodeMaker extends Component {
         let treasureMap = this.state.node.map((taco, index) => {
             if (taco.loot_name !== null) {
                 return (
-                    <div className="card bank-text bg-white mb-3 mx-3 col-md-4" key={index}>
+                    <div className="card dropdownCard mb-3 mx-3 col-md-4" id="card-text" key={index}>
                         <div className="card-header">
                             <h5>{taco.loot_name}</h5>
                         </div>
