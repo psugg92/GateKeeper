@@ -14,6 +14,8 @@ function checkLogin() {
         return me()
         .then((user) => {
             loggedIn = true;
+            userid = getUserId();
+            console.log("the user id is ", userid)
             return Promise.resolve(true);
         }).catch(() => {
             return Promise.resolve(false);
@@ -35,6 +37,7 @@ function login(email, password) {
             .then((jsonResponse) => {
                 baseService.setAuthToken(jsonResponse.token);
                 loggedIn = true;
+                return jsonResponse.user;
             });
         } else if (response.status === 401) {
             return response.json()
@@ -51,7 +54,21 @@ function logout() {
 }
 
 function me() {
-    return baseService.get('/api/users/me');
+    return baseService.get('/api/users/me')
+    .then(data => {
+        userid = data.id
+        return userid;
+    });
 }
 
-export { isLoggedIn, checkLogin, login, logout };
+function getSingleUser(id) {
+    return baseService.get(`/api/users/${id}`)
+}
+
+function getUserId() {
+    return userid;
+}
+
+let userid
+
+export { isLoggedIn, checkLogin, login, logout, getUserId, getSingleUser };

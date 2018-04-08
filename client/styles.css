@@ -1,5 +1,12 @@
 body {
   text-align: center;
+  /* background:url(https://66.media.tumblr.com/ad392a5f11674074ddccd754e1cfadf9/tumblr_mfpaevAhTB1qdv5ueo1_500.gif) */
+  color: white;
+  background-color: #222;
+}
+
+#hide {
+  visibility: hidden;
 }
 
 .Checkout {
@@ -77,5 +84,85 @@ body {
   }
 
 #top {
-  background-color: #F2F2F2;
+  background-color: rgb(48, 48, 48);
+}
+
+@media(min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+    max-width: 1200px;
+  }
+}
+
+.btn {
+  background-color: #FF9033;
+}
+
+.card {
+  background-color: rgb(48, 48, 48);
+}
+
+.jumbotron {
+  background-color: #222;
+}
+
+.alert {
+  color: #178383;
+}
+
+.dropdownCard {
+  background-color: rgb(48, 48, 48);
+}
+
+.bank {
+  background-color: white;
+  
+}
+
+.bank-text {
+  color: #0097B2;
+}
+
+#edit-img:hover img {
+  -webkit-filter: invert(100%);
+}
+
+.scroll {
+  overflow: scroll;
+}
+
+.aqua {
+  background-color: rgb(48, 48, 48);
+}
+
+.aqua-text {
+  color: #0097B2;
+}
+
+.grey {
+  color: rgb(241, 240, 240);
+}
+
+@font-face {
+  font-family: JosefinSans-Light;
+  src: url('../fonts/JosefinSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: JosefinSans-SemiBold;
+  src: url('../fonts/JosefinSans-SemiBold.ttf') format('truetype');
+}
+
+p, div, btn, Link {
+  font-family: 'JosefinSans-Light';
+  color: rgb(207, 207, 207)
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'JosefinSans-SemiBold';
+  color: rgb(207, 207, 207)
+}
+
+card {
+  color:  rgb(48, 48, 48);
 }
