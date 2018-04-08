@@ -1,6 +1,6 @@
 import Table from '../table';
 import { Router } from 'express';
-import { getUserCampaigns, getCampaignNodes } from '../nodeQuery';
+import { getUserCampaigns, getCampaignNodes, postUserCampaign, getCampaignLocations, postCampaignLocation, postNode} from '../nodeQuery';
 
 let router = Router();
 
@@ -16,6 +16,15 @@ router.get('/nodes/:id', (req, res) => {
     })
 })
 
+router.post('/nodes/:id', (req, res) => {
+    postNode(req.body.eventName, req.body.eventDescription, req.body.eventLocation, req.params.id)
+    .then((results) => (
+        res.json(results)
+    )).catch((err) => (
+        console.log(err)
+    ))
+})
+
 router.get('/:id', (req, res) => {
     getUserCampaigns(req.params.id)
     .then((results) => (
@@ -25,11 +34,20 @@ router.get('/:id', (req, res) => {
     ))
 });
 
+// router.post('/:id', (req, res) => {
+//     campaigns.insert(req.body)
+//     .then(data =>{
+//         res.send(data);
+//     }).catch((err) => (
+//         console.log(err)
+//     ))
+// })
+
 router.post('/:id', (req, res) => {
-    campaigns.insert(req.body)
-    .then(data =>{
-        res.send(data);
-    }).catch((err) => (
+    postUserCampaign(req.body.campaign_name, req.body.campaign_description, req.params.id)
+    .then((results) => (
+        res.json(results)
+    )).catch((err) => (
         console.log(err)
     ))
 })
@@ -51,4 +69,23 @@ router.delete('/:id', (req, res) => {
         console.log(err)
     ))
 })
+
+router.get('/locations/:id', (req, res) => {
+    getCampaignLocations(req.params.id)
+    .then((results) => (
+        res.json(results)
+    )).catch((err) => (
+        console.log(err)
+    ))
+});
+
+router.post(`/locations/:id`, (req, res) => {
+    postCampaignLocation(req.body.locationName, req.body.locationDescription, req.body.locationLore, req.params.id)
+    .then((results) => {
+        res.json(results)
+    }).catch((err) => (
+        console.log(err)
+    ))
+})
+
 export default router;

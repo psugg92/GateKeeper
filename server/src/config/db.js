@@ -31,6 +31,7 @@ function callProcedure(procedureName, args = []) {
     let callString = `CALL ${procedureName}(${placeholders});`; // CALL GetChirps();, or CALL InsertChirp(?,?,?);
     return executeQuery(callString, args);
 }
+
 function rows(procedureName, args = []) {
     return callProcedure(procedureName, args)
     .then((resultsets) => {
