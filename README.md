@@ -1,12 +1,7 @@
-# Covalence Full Stack Project Boilerplate
-This boilerplate includes build scripts and setup for a ReactJS front-end and an ExpressJS back-end.
+# Dungeon Keeper
+This project was created by Peter Sugg, Jason Simons, and Matt Bolten.
 
-### Getting Started
-Remember to run `npm install` to install all necessary dependencies.
+### Dungeon Keeper's Goal
+The goal of Dungeon Keeper is to be a Dungeon Master's Resource, a place where a Dungeon Master can keep up with notes about their world and keep track of encounters that adventurers will come in contact with.
 
-### Careful!
-Make sure you are always working within the front-end or back-end `src` directory. Stay out of the `dist` and `lib` directories, as their contents will be erased each time the source code is transpiled.
-
-### Running
-* To run the project during development (for automatic transpile and server restart), use `npm run dev`.
-* `npm run start` will be used in a production environment. It transpiles once and does not look for changes.
+# Work in Progress
